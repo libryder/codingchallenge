@@ -1,0 +1,25 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <b>Gist url:</b>
+  <%= @challenge.gist_url %>
+</p>
+
+<p>
+  <b>Description:</b>
+  <%= @challenge.description %>
+</p>
+
+<p>
+  <b>Up votes:</b>
+  <%= @challenge.up_votes %>
+</p>
+
+<p>
+  <b>Down votes:</b>
+  <%= @challenge.down_votes %>
+</p>
+
+
+<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
+<%= link_to 'Back', challenges_path %>

@@ -25,7 +25,6 @@ Spork.prefork do
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
   require 'webmock/rspec'
-  require 'vcr'
   require 'capybara/poltergeist'
 
   RSpec.configure do |config|
