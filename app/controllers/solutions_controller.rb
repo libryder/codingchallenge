@@ -2,6 +2,7 @@ class SolutionsController < ApplicationController
   # GET /solutions
   # GET /solutions.json
   def index
+    session[:redirect] = request.referrer
     @solutions = Solution.all
 
     respond_to do |format|
@@ -24,7 +25,8 @@ class SolutionsController < ApplicationController
   # GET /solutions/new
   # GET /solutions/new.json
   def new
-    @solution = Solution.new
+    @challenge = Challenge.find(params[:challenge_id])
+    @solution = Solution.new(challenge_id: params[:challenge_id])
 
     respond_to do |format|
       format.html # new.html.erb
@@ -34,6 +36,9 @@ class SolutionsController < ApplicationController
 
   # GET /solutions/1/edit
   def edit
+    session[:redirect] = request.referrer
+
+    @challenge = Challenge.find(params[:challenge_id])
     @solution = Solution.find(params[:id])
   end
 
@@ -60,7 +65,13 @@ class SolutionsController < ApplicationController
 
     respond_to do |format|
       if @solution.update_attributes(params[:solution])
-        format.html { redirect_to @solution, notice: 'Solution was successfully updated.' }
+        format.html do 
+          if redirect_path = session.delete(:redirect)
+            redirect_to redirect_path
+          else
+            redirect_to @solution, notice: 'Solution was successfully updated.' 
+          end
+        end
         format.json { head :no_content }
       else
         format.html { render action: "edit" }
@@ -76,7 +87,7 @@ class SolutionsController < ApplicationController
     @solution.destroy
 
     respond_to do |format|
-      format.html { redirect_to solutions_url }
+      format.html { redirect_to challenge_solutions_url }
       format.json { head :no_content }
     end
   end

@@ -1,31 +1,28 @@
 <h1>Listing solutions</h1>
 
-<table>
+<table class="table table-bordered">
   <tr>
     <th>Solution url</th>
-    <th>Challenge</th>
     <th>User</th>
     <th>Valid solution</th>
     <th>Notes</th>
     <th></th>
-    <th></th>
-    <th></th>
+    <% if can?(:manage, Solution) %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @solutions.each do |solution| %>
   <tr>
-    <td><%= solution.solution_url %></td>
-    <td><%= solution.challenge_id %></td>
-    <td><%= solution.user_id %></td>
-    <td><%= solution.valid_solution %></td>
-    <td><%= solution.notes %></td>
-    <td><%= link_to 'Show', solution %></td>
-    <td><%= link_to 'Edit', edit_solution_path(solution) %></td>
-    <td><%= link_to 'Destroy', solution, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <td><%= link_to('View source', solution.solution_url) %></td>
+    <td><%#= solution.user.username %></td>
+    <td><%= solution.valid_solution ? "Yes" : "No" %></td>
+    <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td id="solution_<%= solution.id%>">
+    <% if can?(:manage, Solution) %>
+      <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td id="edit_solution_<%= solution.id%>">
+      <td><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>
-
-<br />
-
-<%= link_to 'New Solution', new_solution_path %>

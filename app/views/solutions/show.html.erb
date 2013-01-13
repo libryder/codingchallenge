@@ -25,6 +25,6 @@
   <%= @solution.notes %>
 </p>
 
-
-<%= link_to 'Edit', edit_solution_path(@solution) %> |
-<%= link_to 'Back', solutions_path %>
+<% if can?(:manage, Solution) %>
+  <%= link_to 'Edit', edit_challenge_solution_path(@solution) %>
+<% end %>

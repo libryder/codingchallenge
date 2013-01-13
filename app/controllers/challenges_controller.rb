@@ -57,15 +57,14 @@ class ChallengesController < ApplicationController
   # PUT /challenges/1.json
   def update
     @challenge = Challenge.find(params[:id])
-
-    respond_to do |format|
-      if @challenge.update_attributes(params[:challenge])
-        format.html { redirect_to @challenge, notice: 'Challenge was successfully updated.' }
-        format.json { head :no_content }
-      else
-        format.html { render action: "edit" }
-        format.json { render json: @challenge.errors, status: :unprocessable_entity }
-      end
+    
+    if solution = params[:challenge].delete(:solution)
+      @solution = Solution.find solution[:id]
+      @solution.update_attributes(solution)
+      redirect_to challenge_solution(@solution)
+    else
+      @challenge.update_attributes(params[:challenge])
+      redirect_to challenge_path(@challenge)
     end
   end
 

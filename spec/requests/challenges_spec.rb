@@ -14,9 +14,8 @@ describe "Challenges" do
     end
 
     it 'should navigate to new solution page' do
-      save_and_open_page
       click_link("Submit Solution")
-      expect(current_path).to eq(new_solution_path(challenge))
+      expect(current_path).to eq(new_challenge_solution_path(challenge))
     end
 
     describe "admin functions" do      
