@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113014402) do
+ActiveRecord::Schema.define(:version => 20130113020039) do
 
   create_table "challenges", :force => true do |t|
     t.text     "gist_url"
@@ -22,6 +22,16 @@ ActiveRecord::Schema.define(:version => 20130113014402) do
     t.datetime "updated_at",  :null => false
     t.text     "source"
     t.text     "title"
+  end
+
+  create_table "solutions", :force => true do |t|
+    t.text     "solution_url"
+    t.integer  "challenge_id"
+    t.integer  "user_id"
+    t.boolean  "valid_solution"
+    t.text     "notes"
+    t.datetime "created_at",     :null => false
+    t.datetime "updated_at",     :null => false
   end
 
   create_table "users", :force => true do |t|
