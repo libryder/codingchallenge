@@ -28,3 +28,9 @@
 <% if can?(:manage, Solution) %>
   <%= link_to 'Edit', edit_challenge_solution_path(@solution) %>
 <% end %>
+
+<br />
+
+<p>
+  <h4><%= link_to "<< Back to " + @solution.challenge.title, challenge_path(@solution.challenge) %></h4>
+</p>

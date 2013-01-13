@@ -62,20 +62,23 @@
               <% end %>
             </div>
           </div><!--/.nav-collapse -->
+          
+          <div style="float:right;margin-top:-30px">
+            Be social. 
+            <%= link_to "Facebook", "http://facebook.com/WeeklyCodingChallenge"  %>
+            <%= link_to "Twitter", "http://twitter.com/Code_Challenge"  %>
+          </div>
+
         </div>
       </div>
     </div>
 
     <div class="container-fluid">
       <div class="row-fluid">
-        <div class="span3">
-          <div class="well sidebar-nav">
-            <ul class="nav nav-list">
-              <li class="nav-header">Be Social</li>
-              <li><%= link_to "Facebook", "http://facebook.com/WeeklyCodingChallenge"  %></li>
-              <li><%= link_to "Twitter", "http://twitter.com/Code_Challenge"  %></li>
-            </ul>
-          </div><!--/.well -->
+        <div class="span3 about-weekly">
+          <h4>About Weekly Coding Challenge</h4>
+          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div><br />
+          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
         </div><!--/span-->
         <div class="span9">
           <%= bootstrap_flash %>
@@ -84,12 +87,7 @@
       </div><!--/row-->
 
       <footer>
-        <p><strong>Weekly Coding Challenge</strong></p>
-        <div class="footer-div">
-          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div>
-          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
-          <div class="clear">
-        </div>
+
       </footer>
 
     </div> <!-- /container -->
