@@ -1,0 +1,42 @@
+<%= nested_form_for(@challenge, html: { class: 'form-inline' } ) do |f| %>
+  <%= f.fields_for(@solution) do |ff| %>
+    <% if @solution.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(@solution.errors.count, "error") %> prohibited this solution from being saved:</h2>
+
+        <ul>
+        <% @solution.errors.full_messages.each do |msg| %>
+          <li><%= msg %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <%= ff.hidden_field :challenge_id, value: @solution.challenge_id %>
+
+    <div class="field">
+      <%= ff.label :solution_url %><br />
+      <%= ff.text_field :solution_url %>
+    </div>
+
+    <br />
+
+    <% if can?(:manage, Solution) %>
+      <div class="field">
+        <%= ff.label :valid_solution %>
+        <%= ff.check_box :valid_solution %>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= ff.label :notes %><br />
+      <%= ff.text_area :notes, class: 'challenge-description'  %>
+    </div>
+
+    <br />
+
+    <div class="actions">
+      <%= f.submit %>
+    </div>
+  <% end %>
+<% end %>
