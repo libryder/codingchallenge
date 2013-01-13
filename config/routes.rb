@@ -1,6 +1,6 @@
 Codingchallenge::Application.routes.draw do
-  resources :solutions
   devise_for :users
+  resources :solutions
 
   # The priority is based upon order of creation:
   # first created -> highest priority.

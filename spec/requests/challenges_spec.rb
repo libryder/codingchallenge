@@ -1,7 +1,8 @@
 require 'spec_helper'
 
 describe "Challenges" do
-  
+  let(:user) { User(:admin).make! }
+
   describe "GET /challenges" do
     
     context 'as an admin' do
@@ -14,5 +15,9 @@ describe "Challenges" do
     context 'as a normal user' do
 
     end
+  end
+
+  describe 'create new challenge' do
+    visit_path_and_login_with(new_challenge_path, user)
   end
 end
