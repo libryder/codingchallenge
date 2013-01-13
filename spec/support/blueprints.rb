@@ -13,8 +13,8 @@ end
 
 Solution.blueprint do
   challenge { challenge }
-  gist_url { "http://gist.github.com" }
-  description { "Sample solution notes" }
+  solution_url { "http://gist.github.com" }
+  notes { "Sample solution notes" }
 end
 
 Challenge.blueprint do

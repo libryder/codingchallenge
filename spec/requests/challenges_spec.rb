@@ -18,6 +18,6 @@ describe "Challenges" do
   end
 
   describe 'create new challenge' do
-    visit_path_and_login_with(new_challenge_path, user)
+    #visit_path_and_login_with(new_challenge_path, user)
   end
 end
