@@ -1,8 +1,9 @@
 <div class="hero-unit">
   <h1>Most Recent Challenge</h1>
-  <p><%= @challenges.first.description %></p>
+  <p><%= @challenges.last.description %></p>
   <p>
-    <%= button_to("View challenge", challenge_path(@challenges.first), class: 'btn btn-primary btn-large', method: :get) %>
+    <%= link_to("View challenge", challenge_path(@challenges.last), class: 'btn btn-primary btn-large', method: :get) %>
+    <%= link_to("Submit Solution", new_challenge_solution_path(@challenges.last), class: 'btn btn-success btn-large', method: :get) %>
   </p>
 </div>
 

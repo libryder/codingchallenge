@@ -2,26 +2,39 @@ require 'spec_helper'
 
 describe "Challenges" do
   let(:user) { User.make! }
+  let!(:challenge) { Challenge.make! }
 
-  describe "admin functions" do
+  describe 'challenges index' do
     before do
-      Challenge.make!
       visit_path_and_login_with(challenges_path, user)
     end
-    
-    context 'as an admin' do
-      let(:user) { User.make!(:admin) }
-      
-      it 'should show an edit link' do
-        expect(page).to have_link 'Edit'
+
+    it 'should have button to submit solution' do
+      expect(page).to have_link("Submit Solution")
+    end
+
+    it 'should navigate to new solution page' do
+      save_and_open_page
+      click_link("Submit Solution")
+      expect(current_path).to eq(new_solution_path(challenge))
+    end
+
+    describe "admin functions" do      
+      context 'as an admin' do
+        let(:user) { User.make!(:admin) }
+        
+        it 'should show an edit link' do
+          expect(page).to have_link 'Edit'
+        end
+      end
+
+      context 'as a normal user' do
+        it 'does not show edit link' do
+          expect(page).to_not have_link 'Edit'
+        end
       end
     end
 
-    context 'as a normal user' do
-      it 'does not show edit link' do
-        expect(page).to_not have_link 'Edit'
-      end
-    end
   end
 
   describe 'new challenge' do
