@@ -6,6 +6,7 @@ gem 'pg'
 gem 'json'
 gem 'unicorn'
 gem 'twitter-bootstrap-rails'
+gem 'thin'
 
 group :assets do
   gem 'coffee-rails', '~> 3.2.1'
@@ -16,7 +17,6 @@ gem 'jquery-rails'
 
 group :development do
   gem 'flog'
-  gem 'thin'
   gem 'better_errors'
   gem 'binding_of_caller' # Adds some features to BetterErrors
 end
