@@ -12,14 +12,23 @@
   <% end %>
 
   <div class="field">
+    <%= f.label :title %><br />
+    <%= f.text_field :title %>
+  </div>
+
+  <div class="field">
     <%= f.label :gist_url %><br />
     <%= f.text_field :gist_url %>
   </div>
   <div class="field">
     <%= f.label :description %><br />
-    <%= f.text_area :description %>
+    <%= f.text_area :description, class: 'challenge-description' %>
   </div>
 
+  <div class="field">
+    <%= f.label :source %><br />
+    <%= f.text_field :source %>
+  </div>
   <br />
 
   <div class="actions">

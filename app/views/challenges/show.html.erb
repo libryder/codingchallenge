@@ -1,5 +1,7 @@
 <p id="notice"><%= notice %></p>
 
+<h3><%= @challenge.title %></h3>
+
 <% if @challenge.gist_url.present? %>
   <p>
     <b>Gist url:</b>
@@ -8,9 +10,15 @@
 <% end %>
 
 <p>
-  <b>Challenge description:</b><br />
+  <strong>Description:</strong><br />
   <%= @challenge.description %>
 </p>
 
-<%= link_to 'Edit', edit_challenge_path(@challenge) %> |
-<%= link_to 'Back', challenges_path %>
+<p>
+  <strong>Source:</strong><br />
+  <%= @challenge.source %>
+</p>
+
+<% if can?(:edit, @challenge) %>
+  <%= link_to 'Edit', edit_challenge_path(@challenge) %>
+<% end %>

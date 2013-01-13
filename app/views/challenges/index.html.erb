@@ -1,23 +1,35 @@
-<h1>Listing challenges</h1>
+<div class="hero-unit">
+  <h1>Most Recent Challenge</h1>
+  <p><%= @challenges.first.description %></p>
+  <p>
+    <%= link_to("View challenge", challenge_path(@challenges.first), class: 'btn btn-primary btn-large') %>
+  </p>
+</div>
+
+<h1>All Challenges</h1>
 
 <table class='table table-bordered'>
   <tr>
-    <th>Number</th>
+    <th>Title</th>
     <th>Gist url</th>
     <th>Description</th>
     <th>Added</th>
-    <th></th>
-    <th></th>
+    <% if can?(:update, @challenges) %>
+      <th></th>
+      <th></th>
+    <% end %>
   </tr>
 
 <% @challenges.each do |challenge| %>
   <tr>
-    <td><%= link_to challenge.id, challenge %></td>
+    <td><%= link_to challenge.title, challenge %></td>
     <td><%= challenge.gist_url %></td>
     <td><%= challenge.description %></td>
     <td><%= challenge.created_at.to_date %></td>
-    <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
-    <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% if can?(:update, challenge) %>
+      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+      <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
   </tr>
 <% end %>
 </table>

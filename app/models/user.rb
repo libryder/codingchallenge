@@ -8,4 +8,14 @@ class User < ActiveRecord::Base
   # Setup accessible (or protected) attributes for your model
   attr_accessible :email, :password, :password_confirmation, :remember_me
   # attr_accessible :title, :body
+
+  serialize :roles, Array
+
+  def admin?
+    is?(:admin)
+  end
+
+  def is?(role)
+    roles.include?(role.to_s.humanize.downcase)
+  end
 end

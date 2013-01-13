@@ -1,5 +1,5 @@
 class Challenge < ActiveRecord::Base
-  attr_accessible :description, :down_votes, :gist_url, :up_votes, :valid_solution
+  attr_accessible :description, :down_votes, :gist_url, :up_votes, :valid_solution, :title, :source
 
   has_many :solutions, dependent: :destroy
   validates :description, presence: true

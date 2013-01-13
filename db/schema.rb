@@ -11,7 +11,7 @@
 #
 # It's strongly recommended to check this file into your version control system.
 
-ActiveRecord::Schema.define(:version => 20130113004915) do
+ActiveRecord::Schema.define(:version => 20130113014402) do
 
   create_table "challenges", :force => true do |t|
     t.text     "gist_url"
@@ -21,15 +21,7 @@ ActiveRecord::Schema.define(:version => 20130113004915) do
     t.datetime "created_at",  :null => false
     t.datetime "updated_at",  :null => false
     t.text     "source"
-  end
-
-  create_table "solutions", :force => true do |t|
-    t.text     "description"
-    t.text     "gist_url"
-    t.boolean  "valid_solution"
-    t.integer  "challenge_id"
-    t.datetime "created_at",     :null => false
-    t.datetime "updated_at",     :null => false
+    t.text     "title"
   end
 
   create_table "users", :force => true do |t|
@@ -45,6 +37,7 @@ ActiveRecord::Schema.define(:version => 20130113004915) do
     t.string   "last_sign_in_ip"
     t.datetime "created_at",                             :null => false
     t.datetime "updated_at",                             :null => false
+    t.text     "roles"
   end
 
   add_index "users", ["email"], :name => "index_users_on_email", :unique => true
