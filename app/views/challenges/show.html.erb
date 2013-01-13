@@ -20,5 +20,10 @@
 </p>
 
 <% if can?(:edit, @solution) %>
-  <%= link_to 'Edit', edit_challenge_path(@challenge) %>
+  <div><%= link_to 'Edit', edit_challenge_path(@challenge) %></div>
+  <br />
 <% end %>
+
+<%= render template: 'solutions/index', locals: { solutions: @challenge.solutions } %>
+
+<%= link_to("Submit Solution", new_challenge_solution_path(@challenge), class: 'btn btn-success btn-large', method: :get) %>
