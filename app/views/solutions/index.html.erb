@@ -6,11 +6,11 @@
     <th>User</th>
     <th>Valid solution</th>
     <th>Notes</th>
-    <th></th>
     <% if can?(:manage, Solution) %>
       <th></th>
       <th></th>
     <% end %>
+    <th>Submitted</th>
   </tr>
 
 <% @solutions.each do |solution| %>
@@ -23,6 +23,7 @@
       <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td id="edit_solution_<%= solution.id%>">
       <td><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
     <% end %>
+    <td><%= solution.created_at.to_time %></td>
   </tr>
 <% end %>
 </table>

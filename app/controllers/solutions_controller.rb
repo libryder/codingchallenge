@@ -49,7 +49,7 @@ class SolutionsController < ApplicationController
 
     respond_to do |format|
       if @solution.save
-        format.html { redirect_to @solution, notice: 'Solution was successfully created.' }
+        format.html { redirect_to challenge_solution_path(solution.challenge, solution), notice: 'Solution was successfully created.' }
         format.json { render json: @solution, status: :created, location: @solution }
       else
         format.html { render action: "new" }

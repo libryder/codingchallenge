@@ -58,10 +58,10 @@ class ChallengesController < ApplicationController
   def update
     @challenge = Challenge.find(params[:id])
     
-    if solution = params[:challenge].delete(:solution)
-      @solution = Solution.find solution[:id]
-      @solution.update_attributes(solution)
-      redirect_to challenge_solution(@solution)
+    if solution = params[:solution]
+      @solution = Solution.new(solution)
+      @solution.save
+      redirect_to challenge_solution_path(@challenge, @solution)
     else
       @challenge.update_attributes(params[:challenge])
       redirect_to challenge_path(@challenge)

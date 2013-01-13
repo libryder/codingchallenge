@@ -1,5 +1,5 @@
 <%= nested_form_for(@challenge, html: { class: 'form-inline' } ) do |f| %>
-  <%= f.fields_for(@solution) do |ff| %>
+  <%= fields_for @solution do |ff| %>
     <% if @solution.errors.any? %>
       <div id="error_explanation">
         <h2><%= pluralize(@solution.errors.count, "error") %> prohibited this solution from being saved:</h2>
@@ -36,7 +36,7 @@
     <br />
 
     <div class="actions">
-      <%= f.submit %>
+      <%= ff.submit 'Submit Solution' %>
     </div>
   <% end %>
 <% end %>

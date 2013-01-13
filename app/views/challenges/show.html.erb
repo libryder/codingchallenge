@@ -19,6 +19,6 @@
   <%= @challenge.source %>
 </p>
 
-<% if can?(:edit, @challenge) %>
+<% if can?(:edit, @solution) %>
   <%= link_to 'Edit', edit_challenge_path(@challenge) %>
 <% end %>
