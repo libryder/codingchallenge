@@ -26,10 +26,9 @@ end
 
 group :test do
   gem 'spork'
-  gem 'webmock'
+  gem 'capybara'
   gem 'capybara-mechanize'
   gem 'machinist'
-  gem 'simplecov', :require => false
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'timecop'

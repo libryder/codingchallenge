@@ -1,13 +1,6 @@
 require 'rubygems'
-
-require 'simplecov'
-SimpleCov.start 'rails' do
-  add_group 'Behaviors', 'app/behaviors'
-  add_group 'Presenters', 'app/presenters'
-  add_group 'Jobs', 'app/jobs'
-end if ENV["COVERAGE"]
-
 require 'spork'
+require 'database_cleaner'
 
 Spork.prefork do
   # Loading more in this block will cause your tests to run faster. However,
@@ -24,7 +17,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
-  require 'webmock/rspec'
   require 'capybara/poltergeist'
 
   RSpec.configure do |config|
@@ -38,7 +30,6 @@ Spork.prefork do
     config.mock_with :rspec
 
     # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-    config.fixture_path = "#{::Rails.root}/spec/fixtures"
     config.fixture_path = "#{::Rails.root}/spec/fixtures"
 
     # If you're not using ActiveRecord, or you'd prefer not to run each of your
@@ -56,9 +47,10 @@ Spork.prefork do
 
     # The integration tests can be run with:
     # rspec -t type:request
-    config.filter_run_excluding type: "request"
-
-    config.after(:suite) { puts "\n\nReminder: \e[33mDon't forget to run integration tests with rspec -t type:request\e[0m" }
+    # config.filter_run_excluding type: "request"
+    
+    DatabaseCleaner.strategy = :truncation
+    config.after(:all) { DatabaseCleaner.clean }
   end
 
   # Requires supporting ruby files with custom matchers and macros, etc,

@@ -1,23 +1,68 @@
 require 'spec_helper'
 
 describe "Challenges" do
-  let(:user) { User(:admin).make! }
+  let(:user) { User.make! }
 
-  describe "GET /challenges" do
+  describe "admin functions" do
+    before do
+      Challenge.make!
+      visit_path_and_login_with(challenges_path, user)
+    end
     
     context 'as an admin' do
-      it "returns status 200" do
-        get challenges_path
-        response.status.should be(200)
+      let(:user) { User.make!(:admin) }
+      
+      it 'should show an edit link' do
+        expect(page).to have_link 'Edit'
       end
     end
 
     context 'as a normal user' do
-
+      it 'does not show edit link' do
+        expect(page).to_not have_link 'Edit'
+      end
     end
   end
 
-  describe 'create new challenge' do
-    #visit_path_and_login_with(new_challenge_path, user)
+  describe 'new challenge' do
+    let(:user) { User.make!(:admin) }
+
+    before do
+      Challenge.make!
+      visit_path_and_login_with(new_challenge_path, user)
+    end
+
+    describe 'accessing challenges resource' do
+
+      it 'should login successfully' do
+        expect(page).to have_content("New challenge")
+      end
+    end
+
+    describe 'creating new challenge' do
+      before do
+        fill_in('Title', with: "Some Title")
+        fill_in('Gist url', with: 'http://gist.github.com')
+        fill_in('Description', with: "A description")
+        fill_in('Source', with: "URL to book")
+        click_button "Create Challenge"
+      end
+
+      it 'should save the correct title' do
+        expect(page).to have_content("Some Title")
+      end
+
+      it 'should save the correct url' do
+        expect(page).to have_content("http://gist.github.com")
+      end
+
+      it 'should save the correct description' do
+        expect(page).to have_content("A description")
+      end
+
+      it 'should save the correct source' do
+        expect(page).to have_content('URL to book')
+      end
+    end
   end
 end
