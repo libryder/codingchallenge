@@ -1,0 +1,9 @@
+<div class="hero-unit">
+  <h1>No Challenges</h1>
+  <p>There doesn't seem to be anything here. Check back later!</p>
+  <p>
+    <% if can?(:manage, Challenge) %>
+      <%= button_to("New challenge", new_challenge_path, class: 'btn btn-primary btn-large', method: :get) %>
+    <% end %>
+  </p>
+</div>

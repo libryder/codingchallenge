@@ -1,0 +1,41 @@
+<div class="hero-unit">
+  <h1>Most Recent Challenge</h1>
+  <p><%= @challenges.first.description %></p>
+  <p>
+    <%= button_to("View challenge", challenge_path(@challenges.first), class: 'btn btn-primary btn-large', method: :get) %>
+  </p>
+</div>
+
+<h1>All Challenges</h1>
+
+<table class='table table-bordered'>
+  <tr>
+    <th>Title</th>
+    <th>Gist url</th>
+    <th>Description</th>
+    <th>Added</th>
+    <% if can?(:manage, Challenge) %>
+      <th></th>
+      <th></th>
+    <% end %>
+  </tr>
+
+<% @challenges.each do |challenge| %>
+  <tr>
+    <td><%= link_to challenge.title, challenge %></td>
+    <td><%= challenge.gist_url %></td>
+    <td><%= challenge.description %></td>
+    <td><%= challenge.created_at.to_date %></td>
+    <% if can?(:manage, Challenge) %>
+      <td><%= link_to 'Edit', edit_challenge_path(challenge) %></td>
+      <td><%= link_to 'Destroy', challenge, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+    <% end %>
+  </tr>
+<% end %>
+</table>
+
+<br />
+
+<% if can?(:manage, Challenge) %>
+  <%= link_to 'New Challenge', new_challenge_path %>
+<% end %>
