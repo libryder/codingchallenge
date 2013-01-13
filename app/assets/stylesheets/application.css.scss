@@ -5,3 +5,28 @@
  *= require_self
  *= require_tree .
 */
+
+body {
+  footer {
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    padding: 10px;
+    background: #eee;
+
+    .footer-div {
+      border: 1px solid #ccc;
+      padding: 5px;
+      border-radius: 5px;
+
+      .footer-content {
+        float: left;
+        width: 300px;
+        margin-right: 20px;
+      }
+    }
+  }
+}
+
+.clear {
+  clear: both;
+}

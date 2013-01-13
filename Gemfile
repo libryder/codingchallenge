@@ -7,8 +7,11 @@ gem 'json'
 gem 'unicorn'
 gem 'twitter-bootstrap-rails'
 gem 'thin'
+gem 'devise'
+gem 'cancan'
 
 group :assets do
+  gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.1'
   gem 'uglifier', '>= 1.0.3'
 end

@@ -13,6 +13,7 @@
     <![endif]-->
 
     <%= stylesheet_link_tag "application", :media => "all" %>
+    <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Lato" %>
 
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
@@ -44,13 +45,16 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </a>
-          <a class="brand" href="#">Codingchallenge</a>
+          <a class="brand" href="/">Codingchallenge</a>
           <div class="container-fluid nav-collapse">
-            <ul class="nav">
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
-            </ul>
+            <div id="user_nav">
+              <% if user_signed_in? %>
+                Signed in as <%= current_user.email %>. Not you?
+                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+              <% else %>
+                <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+              <% end %>
+            </div>
           </div><!--/.nav-collapse -->
         </div>
       </div>
@@ -61,10 +65,9 @@
         <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
-              <li class="nav-header">Sidebar</li>
-              <li><%= link_to "Link1", "/path1"  %></li>
-              <li><%= link_to "Link2", "/path2"  %></li>
-              <li><%= link_to "Link3", "/path3"  %></li>
+              <li class="nav-header">Be Social</li>
+              <li><%= link_to "Facebook", "http://facebook.com/WeeklyCodingChallenge"  %></li>
+              <li><%= link_to "Twitter", "http://twitter.com/Code_Challenge"  %></li>
             </ul>
           </div><!--/.well -->
         </div><!--/span-->
@@ -75,7 +78,12 @@
       </div><!--/row-->
 
       <footer>
-        <p>&copy; Company 2012</p>
+        <p><strong>Weekly Coding Challenge</strong></p>
+        <div class="footer-div">
+          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div>
+          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
+          <div class="clear">
+        </div>
       </footer>
 
     </div> <!-- /container -->

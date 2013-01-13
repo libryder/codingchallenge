@@ -1,12 +1,14 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <b>Gist url:</b>
-  <%= @challenge.gist_url %>
-</p>
+<% if @challenge.gist_url.present? %>
+  <p>
+    <b>Gist url:</b>
+    <%= link_to(@challenge.gist_url, @challenge.gist_url) %>
+  </p>
+<% end %>
 
 <p>
-  <b>Description:</b>
+  <b>Challenge description:</b><br />
   <%= @challenge.description %>
 </p>
 
