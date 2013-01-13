@@ -4,7 +4,8 @@ class SolutionsController < ApplicationController
   def index
     session[:redirect] = request.referrer
     @solutions = Solution.all
-
+    @challenge = Challenge.find(params[:challenge_id])
+    
     respond_to do |format|
       format.html # index.html.erb
       format.json { render json: @solutions }

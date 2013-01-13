@@ -36,11 +36,33 @@ describe "Challenges" do
 
   end
 
+  describe 'show challenge' do
+    let(:solution) { Solution.make! }
+
+    before do
+      challenge.solutions << solution
+      visit_path_and_login_with(challenge_path(challenge), user)
+    end
+
+    it 'should show challenge details' do
+      expect(page).to have_content(challenge.title)
+      expect(page).to have_content(challenge.description)
+    end
+
+    it 'should have a link to solutions' do
+      expect(page).to have_link('Click to view')
+    end
+
+    it 'should navigate to solution' do
+      click_link 'Click to view'
+      expect(current_path).to eq(challenge_solution_path(challenge, solution))
+    end
+  end
+
   describe 'new challenge' do
     let(:user) { User.make!(:admin) }
 
     before do
-      Challenge.make!
       visit_path_and_login_with(new_challenge_path, user)
     end
 
