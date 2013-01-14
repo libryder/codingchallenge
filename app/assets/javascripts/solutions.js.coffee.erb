@@ -1,0 +1,58 @@
+# Place all the behaviors and hooks related to the matching controller here.
+# All this logic will automatically be available in application.js.
+# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+class SolutionVote
+
+  constructor: (container) ->
+    @container = container
+    @initializeControls()
+
+  initializeControls: ->
+    arrows = $(@container).find('.vote-arrow')
+    arrows.click (event) =>
+      event.preventDefault()
+      @castUserVote(event)
+
+  castUserVote: (event) ->
+    classes = $(event.target).attr('class')
+    url = document.URL + '/solutions/' + @getSolutionId() + @voteResource(classes)
+
+    $.ajax(
+      url: url
+      type: 'get'
+      dataType: 'json'
+      success: (data, response) =>
+        @updateVoteInfo(classes, event.target)
+    )
+
+  updateVoteInfo: (classes, clicked_arrow) ->
+    url = document.URL + '/solutions/' + @getSolutionId() + '/current_vote'
+
+    $.ajax(
+      url: url
+      type: 'get'
+      dataType: 'json'
+      success: (data, response) =>
+        div = $(@container).find('div')
+
+        if (data.up_voted)
+          $(@container).find('.vote-arrow').removeClass('icon-circle-arrow-down')
+          $(clicked_arrow).addClass('icon-circle-arrow-up')
+        else
+          $(@container).find('.vote-arrow').removeClass('icon-circle-arrow-up')
+          $(clicked_arrow).addClass('icon-circle-arrow-down')
+        div.text(data.votes)
+    )
+
+  voteResource: (classes) ->
+    if (classes.indexOf("up") >= 0)
+      "/up_vote"
+    else
+      "/down_vote"
+
+  getSolutionId: ->
+    $(@container).attr('rel')
+
+$ ->
+  $('.vote-cell').each (index, element) =>
+    new SolutionVote(element)

@@ -10,6 +10,7 @@ gem 'thin'
 gem 'devise'
 gem 'cancan'
 gem 'nested_form'
+gem 'acts_as_votable'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'

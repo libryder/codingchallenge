@@ -1,6 +1,4 @@
 class ChallengesController < ApplicationController
-  # GET /challenges
-  # GET /challenges.json
   def index
     @challenges = Challenge.all
 
@@ -10,10 +8,9 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # GET /challenges/1
-  # GET /challenges/1.json
   def show
     @challenge = Challenge.find(params[:id])
+    @user = current_user || ANON_USER
 
     respond_to do |format|
       format.html # show.html.erb
@@ -21,8 +18,6 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # GET /challenges/new
-  # GET /challenges/new.json
   def new
     @challenge = Challenge.new
 
@@ -32,13 +27,10 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # GET /challenges/1/edit
   def edit
     @challenge = Challenge.find(params[:id])
   end
 
-  # POST /challenges
-  # POST /challenges.json
   def create
     @challenge = Challenge.new(params[:challenge])
 
@@ -53,23 +45,22 @@ class ChallengesController < ApplicationController
     end
   end
 
-  # PUT /challenges/1
-  # PUT /challenges/1.json
   def update
     @challenge = Challenge.find(params[:id])
     
     if solution = params[:solution]
       @solution = Solution.new(solution)
-      @solution.save
-      redirect_to challenge_solution_path(@challenge, @solution)
+      if @solution.save
+        redirect_to challenge_solution_path(@challenge, @solution)
+      else
+        redirect_to new_challenge_solution_path(@challenge), notice: "Please fill out all fields."
+      end
     else
       @challenge.update_attributes(params[:challenge])
       redirect_to challenge_path(@challenge)
     end
   end
 
-  # DELETE /challenges/1
-  # DELETE /challenges/1.json
   def destroy
     @challenge = Challenge.find(params[:id])
     @challenge.destroy

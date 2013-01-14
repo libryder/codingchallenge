@@ -1,6 +1,5 @@
 class SolutionsController < ApplicationController
-  # GET /solutions
-  # GET /solutions.json
+
   def index
     session[:redirect] = request.referrer
     @solutions = Solution.all
@@ -12,8 +11,6 @@ class SolutionsController < ApplicationController
     end
   end
 
-  # GET /solutions/1
-  # GET /solutions/1.json
   def show
     @solution = Solution.find(params[:id])
 
@@ -23,8 +20,6 @@ class SolutionsController < ApplicationController
     end
   end
 
-  # GET /solutions/new
-  # GET /solutions/new.json
   def new
     @challenge = Challenge.find(params[:challenge_id])
     @solution = Solution.new(challenge_id: params[:challenge_id])
@@ -35,7 +30,6 @@ class SolutionsController < ApplicationController
     end
   end
 
-  # GET /solutions/1/edit
   def edit
     session[:redirect] = request.referrer
 
@@ -43,8 +37,6 @@ class SolutionsController < ApplicationController
     @solution = Solution.find(params[:id])
   end
 
-  # POST /solutions
-  # POST /solutions.json
   def create
     @solution = Solution.new(params[:solution])
 
@@ -59,8 +51,6 @@ class SolutionsController < ApplicationController
     end
   end
 
-  # PUT /solutions/1
-  # PUT /solutions/1.json
   def update
     @solution = Solution.find(params[:id])
 
@@ -81,8 +71,6 @@ class SolutionsController < ApplicationController
     end
   end
 
-  # DELETE /solutions/1
-  # DELETE /solutions/1.json
   def destroy
     @solution = Solution.find(params[:id])
     @solution.destroy
@@ -91,5 +79,29 @@ class SolutionsController < ApplicationController
       format.html { redirect_to challenge_solutions_url }
       format.json { head :no_content }
     end
+  end
+
+  def up_vote
+    solution = Solution.find params[:solution_id]
+    current_user.up_votes solution
+    render json: { solution: solution, votes: solution.votes.count }
+  end
+
+  def down_vote
+    solution = Solution.find params[:solution_id]
+    current_user.down_votes solution
+    render json: { solution: solution, votes: solution.votes.count }
+  end
+
+  def current_vote
+    solution = Solution.find params[:solution_id]
+
+    render json: { up_voted: current_user.voted_up_on?(solution), votes: solution.positives.size }
+  end
+
+protected
+
+  def current_user
+    @current_user ||= warden.authenticate(scope: :user) || ANON_USER
   end
 end

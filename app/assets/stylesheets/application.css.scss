@@ -7,6 +7,37 @@
 */
 
 body {
+  a:hover {
+    text-decoration: none;
+  }
+  .solutions-table {
+    td {
+      vertical-align: middle;
+    }
+
+    .vote-cell {
+      a.up {
+        color: #3DA028;
+      }
+      a.down {
+        color: #94256D;
+      }
+      width: 40px;
+
+      div {
+        display: inline;
+        float: right;
+        margin: -10px 5px 0px 0;
+      }
+    }
+  }
+
+  form {
+    [for=user_email], [for=user_password], [for=user_password_confirmation] {
+      margin-bottom: -14px;
+    }
+    input { margin-bottom: 10px; }
+  }
   .header-logo {
     width: 15px;
   }
