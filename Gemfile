@@ -27,7 +27,6 @@ group :development do
 end
 
 group :test do
-  gem 'rack-contrib'
   gem 'spork'
   gem 'capybara'
   gem 'capybara-mechanize'

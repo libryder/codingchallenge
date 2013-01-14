@@ -47,7 +47,7 @@ Spork.prefork do
 
     # The integration tests can be run with:
     # rspec -t type:request
-    # config.filter_run_excluding type: "request"
+    config.filter_run_excluding type: "request"
     
     DatabaseCleaner.strategy = :truncation
     config.after(:all) { DatabaseCleaner.clean }
@@ -58,8 +58,10 @@ Spork.prefork do
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   Dir[Rails.root.join("spec/shared_examples/**/*.rb")].each {|f| require f}
 
-  Capybara.register_driver :poltergeist do |app|
-      Capybara::Poltergeist::Driver.new(app, timeout: 20)
+  if ENV['CI']
+    Capybara.register_driver :poltergeist do |app|
+        Capybara::Poltergeist::Driver.new(app, timeout: 20)
+    end
+    Capybara.javascript_driver = :poltergeist
   end
-  Capybara.javascript_driver = :poltergeist
 end
