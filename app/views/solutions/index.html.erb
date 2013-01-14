@@ -4,6 +4,7 @@
 <% if @solutions.any? %>
   <table class="table table-bordered solutions-table">
     <tr>
+      <th></th>
       <th>Solution url</th>
       <th>User</th>
       <th>Valid solution</th>
@@ -16,17 +17,24 @@
     </tr>
 
   <% @solutions.each do |solution| %>
-    <tr>
-      <td><%= link_to('View source', solution.solution_url) %></td>
-      <td><%#= solution.user.username %></td>
-      <td><%= solution.valid_solution ? "Yes" : "No" %></td>
-      <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td id="solution_<%= solution.id%>">
-      <% if can?(:manage, Solution) %>
-        <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td id="edit_solution_<%= solution.id%>">
-        <td><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      <% end %>
-      <td><%= solution.created_at.to_time %></td>
-    </tr>
+    <% present solution do |presenter| %>
+      <tr>
+        <td class="vote-cell" rel="<%= solution.id %>">
+          <%= presenter.up_vote_arrow %><br />
+          <%= presenter.down_vote_arrow %>
+          <div><%= solution.positives.size %></div>
+        </td>
+        <td><%= link_to('View source', solution.solution_url) %></td>
+        <td><%#= solution.user.username %></td>
+        <td><%= solution.valid_solution ? "Yes" : "No" %></td>
+        <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td id="solution_<%= solution.id%>">
+        <% if can?(:manage, Solution) %>
+          <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td id="edit_solution_<%= solution.id%>">
+          <td><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+        <td><%= solution.created_at.to_time %></td>
+      </tr>
+    <% end %>
   <% end %>
   </table>
 <% else %>
