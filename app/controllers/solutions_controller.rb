@@ -102,6 +102,6 @@ class SolutionsController < ApplicationController
 protected
 
   def current_user
-    @current_user ||= warden.authenticate(scope: :user) || ANON_USER
+    @current_user ||= warden.authenticate(scope: :user)
   end
 end
