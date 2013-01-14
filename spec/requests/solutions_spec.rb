@@ -12,6 +12,43 @@ describe "Solutions" do
       visit challenge_solutions_path(challenge)
     end
     
+    describe 'voting mechanism', :js do
+      it 'should not allow you to when not logged in' do
+        expect(page).to_not have_css('.icon-circle-arrow-up')
+      end
+
+      context 'when logged in' do
+        before { visit_path_and_login_with(challenge_path(challenge), user) }
+
+        it 'should allow you to up vote' do
+          arrow = "up_vote_#{solution.id}"
+          click_link arrow
+          visit current_path
+          expect(page.find_link(arrow)[:class]).to have_content('icon-circle-arrow-up')
+        end
+
+        it 'should allow you to down vote' do
+          arrow = "down_vote_#{solution.id}"
+          click_link arrow
+          visit current_path
+          expect(page.find_link(arrow)[:class]).to have_content('icon-circle-arrow-down')
+        end
+
+        it 'should display the correct count' do
+          element = page.find('.vote-cell div')
+          expect(element.text).to eq("0")
+        end
+
+        it 'should increment the count' do
+          element = page.find('.vote-cell div')
+          arrow = "up_vote_#{solution.id}"
+          click_link arrow
+          visit current_path
+          expect(element.text).to eq("1")
+        end
+      end
+    end
+
     it 'should display table of solutions' do
       expect(page).to have_selector('.solutions-table')
     end
