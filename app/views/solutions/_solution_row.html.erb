@@ -10,6 +10,7 @@
 
     <td><%= link_to('View source', solution.solution_url) %></td>
     <td><%#= solution.user.username %></td>
+    <td><%= solution.language %>
     <td><%= solution.valid_solution ? "Yes" : "No" %></td>
     <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td>
     
