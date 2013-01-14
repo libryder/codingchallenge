@@ -10,7 +10,7 @@ class ChallengesController < ApplicationController
 
   def show
     @challenge = Challenge.find(params[:id])
-    @user = current_user || ANON_USER
+    @user = current_user
 
     respond_to do |format|
       format.html # show.html.erb
