@@ -7,9 +7,24 @@
 */
 
 body {
+  .prettyprint {
+    /* For some reason pretty print leaves an empty <pre> tag; 
+       This hides it. */
+    pre { display: none; }
+  }
+  .container {
+    .row {
+      margin-bottom: 30px;
+    }
+  }
+
+  .hero-unit {
+    margin-top: 25px;
+  }
   a:hover {
     text-decoration: none;
   }
+
   .solutions-table {
     td {
       vertical-align: middle;
@@ -49,8 +64,8 @@ body {
   .about-weekly {
     border: 1px solid #ccc;
     padding: 15px;
-    text-align: justify;
     border-radius: 10px;
+    width: 96%;
   }
 
   footer {
@@ -62,14 +77,8 @@ body {
     .footer-div {
       background: #eee;
       border: 1px solid #ccc;
-      padding: 5px;
-      border-radius: 5px;
 
-      .footer-content {
-        float: left;
-        width: 300px;
-        margin-right: 20px;
-      }
+      border-radius: 5px;
     }
   }
 }
