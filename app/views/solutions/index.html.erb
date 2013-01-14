@@ -20,8 +20,10 @@
     <% present solution do |presenter| %>
       <tr>
         <td class="vote-cell" rel="<%= solution.id %>">
-          <%= presenter.up_vote_arrow %><br />
-          <%= presenter.down_vote_arrow %>
+          <% if user_signed_in? %>
+            <%= presenter.up_vote_arrow %><br />
+            <%= presenter.down_vote_arrow %>
+          <% end %>
           <div><%= solution.positives.size %></div>
         </td>
         <td><%= link_to('View source', solution.solution_url) %></td>
