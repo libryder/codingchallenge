@@ -1,3 +1,5 @@
+require 'rack/contrib/simple_endpoint'
+
 Codingchallenge::Application.configure do
   # Settings specified here will take precedence over those in config/application.rb
 
@@ -8,7 +10,7 @@ Codingchallenge::Application.configure do
   config.cache_classes = true
 
   # Configure static asset server for tests with Cache-Control for performance
-  config.serve_static_assets = true
+  config.serve_static_assets = false
   config.static_cache_control = "public, max-age=3600"
 
   # Log error messages when you accidentally call methods on nil
@@ -34,4 +36,9 @@ Codingchallenge::Application.configure do
 
   # Print deprecation notices to the stderr
   config.active_support.deprecation = :stderr
+  
+  config.middleware.insert_after Rack::Runtime, Rack::SimpleEndpoint, /\.ttf$/ do |req, res, match|
+    res.status = '403'
+    "I will not serve TTF fonts in test mode."
+  end
 end
