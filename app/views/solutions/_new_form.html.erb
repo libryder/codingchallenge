@@ -29,6 +29,11 @@
     <% end %>
 
     <div class="field">
+      <%= ff.label :language %><br />
+      <%= ff.text_field :language %>
+    </div>
+
+    <div class="field">
       <%= ff.label :notes %><br />
       <%= ff.text_area :notes, class: 'challenge-description'  %>
     </div>

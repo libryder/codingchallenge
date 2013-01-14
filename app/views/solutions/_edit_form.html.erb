@@ -19,6 +19,11 @@
     <%= f.text_field :solution_url %>
   </div>
 
+  <div class="field">
+    <%= f.label :language %><br />
+    <%= f.text_field :language %>
+  </div>
+
   <br />
 
   <% if can?(:manage, Solution) %>
