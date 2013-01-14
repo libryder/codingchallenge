@@ -15,6 +15,7 @@
     <%= stylesheet_link_tag "application", :media => "all" %>
     <%= stylesheet_link_tag "http://fonts.googleapis.com/css?family=Lato" %>
     <%= stylesheet_link_tag 'bootstrap/css/bootstrap.min.css' %>
+
     <!-- For third-generation iPad with high-resolution Retina display: -->
     <!-- Size should be 144 x 144 pixels -->
     <%= favicon_link_tag 'images/apple-touch-icon-144x144-precomposed.png', :rel => 'apple-touch-icon-precomposed', :type => 'image/png', :sizes => '144x144' %>
@@ -73,18 +74,21 @@
       </div>
     </div>
 
-    <div class="container-fluid">
-      <div class="row-fluid">
-        <div class="span3 about-weekly">
-          <h4>About Weekly Coding Challenge</h4>
-          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div><br />
-          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
-        </div><!--/span-->
-        <div class="span9">
+    <div class="container">
+      <div class="row">
+        <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
-      </div><!--/row-->
+      </div>
+
+      <div class="row">
+        <div class="span12 about-weekly">
+          <h4>About Weekly Coding Challenge</h4>
+          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div><br />
+          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
+        </div>
+      </div>
 
       <footer>
 
@@ -96,6 +100,7 @@
     ================================================== -->
     <!-- Placed at the end of the document so the pages load faster -->
     <%= javascript_include_tag "application" %>
+    <%= javascript_include_tag 'css3-mediaqueries' %>
 
   </body>
 </html>
