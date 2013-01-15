@@ -11,7 +11,7 @@
     </div>
 
     <div class="title cell"><%= link_to(solution.title, challenge_solution_path(solution.challenge, solution)) %></div>
-    <div class="cell">some_user<%#= solution.user.username %></div>
+    <div class="cell">some_user<%= raw display_user(solution.user) %></div>
     <!-- <td><%= solution.valid_solution ? "Yes" : "No" %></td> -->
     
     <% if can?(:manage, Solution) %>
