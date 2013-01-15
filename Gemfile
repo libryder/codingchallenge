@@ -8,6 +8,9 @@ gem 'unicorn'
 gem 'twitter-bootstrap-rails'
 gem 'thin'
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
+gem 'omniauth-github'
 gem 'cancan'
 gem 'nested_form'
 gem 'acts_as_votable'
@@ -40,6 +43,7 @@ group :test do
 end
 
 group :development, :test do
+  gem 'sqlite3'
   gem 'launchy'
   gem 'rspec-rails'
   gem 'pry'
