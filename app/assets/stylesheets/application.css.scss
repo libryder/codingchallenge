@@ -36,23 +36,30 @@ body {
   }
 
   .solutions-table {
-    td {
-      vertical-align: middle;
+    div.cell {
+      display: inline-block;
+      padding: 10px;
+      position: relative;
+      bottom: 10px;
+      border-right: 1px solid #eee;
+      max-width: 410px;
     }
-
     .vote-cell {
+      display: inline-block;
+
       a.up {
         color: #3DA028;
       }
       a.down {
         color: #94256D;
       }
+
       width: 40px;
 
-      div {
-        display: inline;
-        float: right;
+      .vote-count {
+        display: block;
         margin: -10px 5px 0px 0;
+        float: right;
       }
     }
   }

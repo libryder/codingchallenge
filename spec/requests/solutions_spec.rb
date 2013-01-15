@@ -62,6 +62,18 @@ describe "Solutions" do
     end
   end
 
+  describe 'creating a new solution', :js do
+    before { visit_path_and_login_with(new_challenge_solution_path(challenge), user) }
+
+    it "should allow you to create a new solution" do
+      fill_in "Title", with: "My Title"
+      find('#editor textarea').set('My Code')
+      click_button "Submit Solution"
+      expect(current_path).to eq(challenge_path(challenge))
+      expect(page).to have_content("My Title")
+    end
+  end
+
   describe 'solution show page' do
     before do
       challenge.solutions << solution
