@@ -2,4 +2,4 @@
 
 <%= render partial: 'edit_form' %>
 
-<%= link_to 'Show', challenge_solution_path(@solution) %> |
+<%= link_to 'Back to challenge', challenge_solution_path(@solution.challenge, @solution) %>

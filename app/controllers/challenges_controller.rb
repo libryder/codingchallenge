@@ -51,7 +51,7 @@ class ChallengesController < ApplicationController
     if solution = params[:solution]
       @solution = Solution.new(solution)
       if @solution.save
-        redirect_to challenge_solution_path(@challenge, @solution)
+        redirect_to challenge_path(@challenge)
       else
         redirect_to new_challenge_solution_path(@challenge), notice: "Please fill out all fields."
       end

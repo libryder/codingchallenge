@@ -56,3 +56,5 @@ class SolutionVote
 $ ->
   $('.vote-cell').each (index, element) =>
     new SolutionVote(element)
+  $('#submit-solution').click (event) =>
+    $('#solution_source').val(editor.getSession().getValue())

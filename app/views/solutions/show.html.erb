@@ -21,12 +21,14 @@
 </p>
 
 <p>
-  <b>Notes:</b>
-  <%= @solution.notes %>
+  <b>Source:</b>
+  <pre class='prettyprint'>
+    <%= @solution.source %>
+  </pre>
 </p>
 
 <% if can?(:manage, Solution) %>
-  <%= link_to 'Edit', edit_challenge_solution_path(@solution) %>
+  <%= link_to 'Edit', edit_challenge_solution_path(@solution.challenge, @solution) %>
 <% end %>
 
 <br />
