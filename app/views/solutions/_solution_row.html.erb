@@ -1,22 +1,27 @@
+<hr />
+<div class="solutions-table">
 <% present solution do |presenter| %>
-  <tr>
-    <td class="vote-cell" rel="<%= solution.id %>">
+  <div class="span12">
+    <div class="vote-cell" rel="<%= solution.id %>">
       <% if user_signed_in? %>
         <%= presenter.up_vote_arrow %><br />
         <%= presenter.down_vote_arrow %>
       <% end %>
-      <div><%= solution.positives.size %></div>
-    </td>
+      <div class="vote-count"><%= solution.positives.size %></div>
+    </div>
 
-    <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td>
-    <td><%#= solution.user.username %></td>
-    <td><%= solution.valid_solution ? "Yes" : "No" %></td>
+    <div class="title cell"><%= link_to(solution.title, challenge_solution_path(solution.challenge, solution)) %></div>
+    <div class="cell">some_user<%#= solution.user.username %></div>
+    <!-- <td><%= solution.valid_solution ? "Yes" : "No" %></td> -->
     
     <% if can?(:manage, Solution) %>
-      <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td>
-      <td><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      <div class="cell"><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></div>
+      <div class="cell"><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></div>
     <% end %>
     
-    <td><%= solution.created_at.to_time %></td>
-  </tr>
+    <div class="cell"><%= solution.created_at.to_time %></div>
+  </div>
+  <div class="clear"></div>
+  <hr />
 <% end %>
+</div>
