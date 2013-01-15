@@ -14,8 +14,17 @@ body {
     pre { display: none; }
   }
   .container {
-    .row {
-      margin-bottom: 30px;
+    .span4 {
+      padding: 5px;
+    }
+    .navbar-top { margin-top: 15px; }
+    .challenge-item {
+      background: #eee;
+      padding: 15px;
+      margin: 5px;
+    }
+    footer .navbar-inner div {
+      margin-top: 10px;
     }
   }
 

@@ -1,6 +1,8 @@
 Codingchallenge::Application.routes.draw do
   devise_for :users
 
+  resource :home, only: :index
+
   resources :challenges do
     resources :solutions do
       get :up_vote
@@ -9,6 +11,6 @@ Codingchallenge::Application.routes.draw do
     end
   end
 
-  root :to => 'challenges#index'
+  root :to => 'home#index'
 
 end

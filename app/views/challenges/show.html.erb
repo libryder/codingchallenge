@@ -1,3 +1,4 @@
+<div class="well">
 <p id="notice"><%= notice %></p>
 
 <h3><%= @challenge.title %></h3>
@@ -23,5 +24,6 @@
   <div><%= link_to 'Edit', edit_challenge_path(@challenge) %></div>
   <br />
 <% end %>
+</div>
 
 <%= render template: 'solutions/index', locals: { solutions: @challenge.solutions } %>

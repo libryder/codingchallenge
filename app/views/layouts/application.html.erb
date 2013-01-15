@@ -39,60 +39,75 @@
   </head>
   <body>
 
-    <div class="navbar navbar-fluid-top">
-      <div class="navbar-inner">
-        <div class="container-fluid">
-          <a class="btn btn-navbar" data-target=".nav-collapse" data-toggle="collapse">
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </a>
-          <%= image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby") %>
-          <%= image_tag('python_logo.png', class: 'header-logo', title: "Python") %>
-          <%= image_tag('net_logo.png', class: 'header-logo', title: ".net") %>
-          <%= image_tag('java_logo.png', class: 'header-logo', title: "JAVA") %>
-          <%= image_tag('cpp_logo.png', class: 'header-logo', title: "C++") %>
-          <%= image_tag('php_logo.png', class: 'header-logo', title: "PHP") %>
-          <a class="brand" href="/">CodingChallenge</a>
-          <div class="container-fluid nav-collapse">
-            <div id="user_nav">
-              <% if user_signed_in? %>
-                Signed in as <%= current_user.email %>. Not you?
-                <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-              <% else %>
-                <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-              <% end %>
+    <div class="container">
+      <div class="row">
+        <div class="span12 navbar navbar-top">
+          <div class="navbar-inner">
+            <%= image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby") %>
+            <%= image_tag('python_logo.png', class: 'header-logo', title: "Python") %>
+            <%= image_tag('net_logo.png', class: 'header-logo', title: ".net") %>
+            <%= image_tag('java_logo.png', class: 'header-logo', title: "JAVA") %>
+            <%= image_tag('cpp_logo.png', class: 'header-logo', title: "C++") %>
+            <%= image_tag('php_logo.png', class: 'header-logo', title: "PHP") %>
+            <a class="brand" href="/">CodingChallenge</a>
+            <div class="container-fluid nav-collapse">
+              <div id="user_nav">
+                <% if user_signed_in? %>
+                  Signed in as <%= current_user.email %>. Not you?
+                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                <% else %>
+                  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
+                <% end %>
+              </div>
             </div>
-          </div><!--/.nav-collapse -->
-          
-          <div style="float:right;margin-top:-30px">
-            <%= render partial: 'shared/facebook' %> 
           </div>
-
         </div>
       </div>
-    </div>
 
-    <div class="container">
       <div class="row">
         <div class="span12">
           <%= bootstrap_flash %>
           <%= yield %>
         </div>
       </div>
-
+      <hr />
       <div class="row">
-        <div class="span12 about-weekly">
-          <h4>About Weekly Coding Challenge</h4>
-          <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div><br />
-          <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
+        <div class="span4">
+          <h4>Recent Challenges</h4>
+          <% @challenges.each do |challenge| %>
+            <div class="challenge-item">
+              <%= link_to(challenge.title, challenge_path(challenge)) %>
+            </div>
+          <% end %>
+          <br />
+          <%= link_to("View all challenges", challenges_path) %>
+        </div>
+
+        <div class="span4">
+          <h4>About</h4>
+            <div class="footer-content">Coding Challenge is a community page that publishes one coding challenge per week. Sources will range from textbooks to interview questions to community-submitted content. Topics will range between general coding practices to engineering problems. </div><br />
+            <div class="footer-content">A problem will be posted each week with all reasonably valid solutions posted one week later. Comments aren't discouraged but a good solution will be self-explanatory and easy to read. Only solutions posted from http://gist.github.com/ or a public GitHub repo will be accepted.</div>
+        </div>
+
+        <div class="span4">
+          <h4>Be Social</h4>
+          <%= link_to(image_tag('twitter-icon.png'), 'http://twitter.com/Code_Challenge') %>
+          <%= link_to(image_tag('fb-icon.png'), 'http://facebook.com/WeeklyCodingChallenge') %><br /> 
         </div>
       </div>
 
       <footer>
-
+        <div class="row">
+          <div class="span12 navbar navbar-bottom">
+            <div class="navbar-inner">
+              <div>&copy; 2012 Nobody</div>
+                <div style="float:right;margin-top:-30px">
+                  <%= render partial: 'shared/facebook' %>
+                </div>
+            </div>
+          </div>
+        </div>
       </footer>
-
     </div> <!-- /container -->
 
     <!-- Javascripts
