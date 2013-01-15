@@ -23,6 +23,13 @@
 
       <%= ff.hidden_field :challenge_id, value: @solution.challenge_id %>
 
+      <div class="field">
+        <%= ff.label :title %>
+        <%= ff.text_field :title %>
+      </div>
+
+      <br />
+
       <% if can?(:manage, Solution) %>
         <div class="field">
           <%= ff.label :valid_solution %>

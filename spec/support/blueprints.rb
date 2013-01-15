@@ -14,6 +14,7 @@ end
 Solution.blueprint do
   challenge { challenge }
   source { "Sample solution notes" }
+  title { "Some random title" }
 end
 
 Challenge.blueprint do

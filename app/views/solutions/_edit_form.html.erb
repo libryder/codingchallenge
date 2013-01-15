@@ -21,6 +21,11 @@
     </div>
   <% end %>
 
+  <div class="field">
+    <%= f.label :title %>
+    <%= f.text_field :title %>
+  </div>
+
   <div class="span11" style="position:relative;height:400px">
     <div id="editor"><%= f.object.source %></div>
   </div>
