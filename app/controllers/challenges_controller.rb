@@ -50,6 +50,7 @@ class ChallengesController < ApplicationController
     
     if solution = params[:solution]
       @solution = Solution.new(solution)
+      @solution.user = current_user 
       if @solution.save
         redirect_to challenge_solution_path(@challenge, @solution)
       else
