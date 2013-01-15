@@ -66,8 +66,7 @@
           </div><!--/.nav-collapse -->
           
           <div style="float:right;margin-top:-30px">
-            Be social. 
-            <%= render partial: 'shared/facebook' %> 
+            <%= render partial: 'shared/facebook' unless ENV['CI'] %> 
           </div>
 
         </div>

@@ -12,7 +12,7 @@ describe "Solutions" do
       visit challenge_solutions_path(challenge)
     end
     
-    describe 'voting mechanism', :js do
+    describe 'voting mechanism', :js, :vcr do
       it 'should not allow you to when not logged in' do
         expect(page).to_not have_css('.icon-circle-arrow-up')
       end

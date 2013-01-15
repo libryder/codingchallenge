@@ -48,7 +48,7 @@ Spork.prefork do
     # The integration tests can be run with:
     # rspec -t type:request
     config.filter_run_excluding type: "request"
-    
+
     DatabaseCleaner.strategy = :truncation
     config.after(:all) { DatabaseCleaner.clean }
   end
