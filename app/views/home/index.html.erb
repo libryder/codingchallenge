@@ -24,6 +24,6 @@
   <p><%= @challenges.last.description %></p>
   <p>
     <%= link_to("View challenge", challenge_path(@challenges.last), class: 'btn btn-primary btn-large') %>
-    <%= link_to("Submit Solution", new_challenge_solution_path(@challenges.last), class: 'btn btn-success btn-large') %>
+    <%= link_to("Submit Solution", new_challenge_solution_path(@challenges.last), class: 'btn btn-warning btn-large') %>
   </p>
 </div>
