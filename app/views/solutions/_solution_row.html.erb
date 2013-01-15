@@ -8,10 +8,9 @@
       <div><%= solution.positives.size %></div>
     </td>
 
-    <td><%= link_to('View source', solution.solution_url) %></td>
+    <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td>
     <td><%#= solution.user.username %></td>
     <td><%= solution.valid_solution ? "Yes" : "No" %></td>
-    <td><%= link_to('Click to view', challenge_solution_path(solution.challenge, solution)) %></td>
     
     <% if can?(:manage, Solution) %>
       <td><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></td>

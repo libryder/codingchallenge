@@ -2,8 +2,7 @@ require 'spec_helper'
 
 describe Solution do
   it { should belong_to(:challenge) }
-  it { should validate_presence_of(:solution_url) }
-  it { should validate_presence_of(:notes) }
+  it { should validate_presence_of(:source) }
   it { should belong_to(:user) }
   
   describe '#create' do
