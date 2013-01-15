@@ -49,12 +49,8 @@ describe "Challenges" do
       expect(page).to have_content(challenge.description)
     end
 
-    it 'should have a link to solutions' do
-      expect(page).to have_link('Click to view')
-    end
-
     it 'should navigate to solution' do
-      click_link 'Click to view'
+      click_link solution.title
       expect(current_path).to eq(challenge_solution_path(challenge, solution))
     end
   end
