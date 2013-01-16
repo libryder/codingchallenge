@@ -33,7 +33,7 @@ class SolutionVote
       type: 'get'
       dataType: 'json'
       success: (data, response) =>
-        div = $(@container).find('div')
+        div = $(@container).find('.count')
 
         if (data.up_voted)
           $(@container).find('.vote-arrow').removeClass('icon-circle-arrow-down')
