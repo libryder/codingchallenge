@@ -71,34 +71,43 @@ body {
   }
 
   .solutions-table {
+    display: table;
     div.cell {
-      display: inline-block;
+      display: table-cell;
+      vertical-align: middle;
       padding: 10px;
-      position: relative;
-      bottom: 10px;
       border-right: 1px solid #eee;
       max-width: 410px;
     }
 
     div.title { width: 400px; }
-    div.username { width: 200px; }
+    div.username { 
+      width: 200px; 
+      .submitted-by {
+        display:block;
+        font-style: italic;
+        font-size: 14px;
+      }
+      .user { margin-left: 10px; font-size: 14px;}
+    }
     
     .vote-cell {
       display: inline-block;
+      width: 75px;
 
-      a.up {
-        color: #3DA028;
+      .arrows {
+        display: inline-block;
+        a.up {
+          color: #3DA028;
+        }
+        a.down {
+          color: #94256D;
+        }
       }
-      a.down {
-        color: #94256D;
-      }
-
-      width: 40px;
-
+      .label {padding: 3px}
       .vote-count {
-        display: block;
-        margin: -10px 5px 0px 0;
-        float: right;
+        display: inline-block;
+        text-align: center;
       }
     }
   }
