@@ -1,24 +1,18 @@
 <div class="solutions-table">
 <% present solution do |presenter| %>
   <div class="span12">
-    <div class="vote-cell" rel="<%= solution.id %>">
-      <% if user_signed_in? %>
-        <%= presenter.up_vote_arrow %><br />
-        <%= presenter.down_vote_arrow %>
-      <% end %>
-      <div class="vote-count"><%= solution.positives.size %></div>
-    </div>
+    <%= render partial: 'solutions/solution_vote_cell', locals: { presenter: presenter, solution: solution } %>
 
     <div class="title cell"><%= link_to(solution.title, challenge_solution_path(solution.challenge, solution)) %></div>
-    <div class="username cell"><%= display_user(solution.user) %></div>
-    <!-- <td><%= solution.valid_solution ? "Yes" : "No" %></td> -->
+    <div class="username cell">
+      <div class="user"><%= display_user(solution.user) %>
+      <%= distance_of_time_in_words(solution.created_at, Time.now) %> ago.</div>
+    </div>
     
     <% if can?(:manage, Solution) %>
       <div class="cell"><%= link_to 'Edit', edit_challenge_solution_path(solution.challenge, solution) %></div>
       <div class="cell"><%= link_to 'Destroy', challenge_solution_path(solution.challenge, solution), method: :delete, data: { confirm: 'Are you sure?' } %></div>
     <% end %>
-    
-    <div class="cell"><%= solution.created_at.to_time %></div>
   </div>
   <div class="clear"></div>
   <hr />
