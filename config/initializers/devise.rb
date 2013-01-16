@@ -211,7 +211,7 @@ Devise.setup do |config|
   config.sign_out_via = :delete
 
   # ==> OmniAuth
-  config.omniauth :github,  ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_CLIENT_SECRET"], scope: "user"
+  config.omniauth :github,  ENV["GITHUB_CLIENT_ID"], ENV["GITHUB_CLIENT_SECRET"]
   config.omniauth :twitter, ENV["TWITTER_KEY"],      ENV["TWITTER_SECRET"]
 
   # ==> Warden configuration
