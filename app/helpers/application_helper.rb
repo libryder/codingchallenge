@@ -15,4 +15,14 @@ module ApplicationHelper
       link_to(user.username, "http://www.github.com/#{user.username}")
     end
   end
+
+  def display_language(solution)
+    tag = case solution.language
+      when "ruby" then image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby")
+      when "php"  then image_tag('php_logo.png',  class: 'header-logo', title: "php")
+      else             ""
+    end 
+
+    "#{tag} #{solution.language}"
+  end
 end
