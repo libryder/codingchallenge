@@ -30,7 +30,7 @@ describe ApplicationHelper do
       let(:user) { User.make!(:github) }
 
       it "returns a linked up github name" do 
-        subject.display_user(user).should == "<a href=\"http://www.twitter.com/github-chick\">@github-chick</a>"
+        subject.display_user(user).should == "<a href=\"http://www.github.com/github-chick\">github-chick</a>"
       end
     end
   end
