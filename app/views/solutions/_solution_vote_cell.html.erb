@@ -1,0 +1,12 @@
+<div class="vote-cell cell" rel="<%= solution.id %>">
+  <div class="arrows">
+    <% if user_signed_in? %>
+      <%= presenter.up_vote_arrow %><br />
+      <%= presenter.down_vote_arrow %>
+    <% end %>
+  </div>
+  <div class="vote-count">
+    <div class="label label-important">votes</div>
+    <div class="count"><%= solution.positives.size %></div>
+  </div>
+</div>

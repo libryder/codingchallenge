@@ -7,13 +7,12 @@ module ApplicationHelper
   end
 
   def display_user(user)
-    return "" if user.nil?
-    return user.email if user.provider.nil?
-
-    case user.provider.downcase
-      when "twitter" then link_to("@#{user.username}", "http://www.twitter.com/#{user.username}")
-      when "github"  then link_to(user.username, "http://www.github.com/#{user.username}")      
-      else user.username 
+    if user.nil? then "anonymous"
+    elsif user.uid.nil? then user.email
+    elsif user.provider.downcase == "twitter"
+      link_to("@#{user.username}", "http://www.twitter.com/#{user.username}")
+    elsif user.provider.downcase == "github"
+      link_to(user.username, "http://www.github.com/#{user.username}")
     end
   end
 end

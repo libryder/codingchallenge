@@ -1,29 +1,29 @@
 <div class="well">
-<p id="notice"><%= notice %></p>
+  <p id="notice"><%= notice %></p>
 
-<h3><%= @challenge.title %></h3>
+  <h3><%= @challenge.title %></h3>
 
-<% if @challenge.gist_url.present? %>
+  <% if @challenge.gist_url.present? %>
+    <p>
+      <b>Url:</b>
+      <%= link_to(@challenge.gist_url, @challenge.gist_url) %>
+    </p>
+  <% end %>
+
   <p>
-    <b>Url:</b>
-    <%= link_to(@challenge.gist_url, @challenge.gist_url) %>
+    <strong>Description:</strong><br />
+    <%= @challenge.description %>
   </p>
-<% end %>
 
-<p>
-  <strong>Description:</strong><br />
-  <%= @challenge.description %>
-</p>
+  <p>
+    <strong>Source:</strong><br />
+    <%= @challenge.source %>
+  </p>
 
-<p>
-  <strong>Source:</strong><br />
-  <%= @challenge.source %>
-</p>
-
-<% if can?(:edit, @solution) %>
-  <div><%= link_to 'Edit', edit_challenge_path(@challenge) %></div>
-  <br />
-<% end %>
+  <% if can?(:edit, @solution) %>
+    <div><%= link_to 'Edit', edit_challenge_path(@challenge) %></div>
+    <br />
+  <% end %>
 </div>
 
 <%= render template: 'solutions/index', locals: { solutions: @challenge.solutions } %>
