@@ -108,6 +108,9 @@ body {
       .vote-count {
         display: inline-block;
         text-align: center;
+        .count {
+          color: green;
+        }
       }
     }
   }
