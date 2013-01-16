@@ -13,6 +13,6 @@ Check the [PivotalTracker Project Page](https://www.pivotaltracker.com/projects
 3. Create tests and ensure you didn't break anything.
 4. Submit pull request.
 
-**Handling Challenge Solutions**
+**Submitting Challenge Solutions**
 
-Challenges can be submitted to the [Weekly Coding Challenge](http://weeklycodingchallenge.com) website. You can vote on solutions if you are logged in. As of 1-17-2013 this service is not complete. Signin via GitHub/Twitter will be coming very soon.
+Challenges can be submitted to the [Weekly Coding Challenge](http://weeklycodingchallenge.com) website. You can vote on solutions if you are logged in.
