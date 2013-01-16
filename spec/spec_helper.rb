@@ -17,7 +17,6 @@ Spork.prefork do
   require 'rspec/rails'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
-  require 'capybara/poltergeist'
 
   RSpec.configure do |config|
     # == Mock Framework
@@ -57,11 +56,4 @@ Spork.prefork do
     # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
   Dir[Rails.root.join("spec/shared_examples/**/*.rb")].each {|f| require f}
-
-  if ENV['CI']
-    Capybara.register_driver :poltergeist do |app|
-        Capybara::Poltergeist::Driver.new(app, timeout: 20, js_errors: false)
-    end
-    Capybara.javascript_driver = :poltergeist
-  end
 end

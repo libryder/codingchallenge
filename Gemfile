@@ -37,7 +37,6 @@ group :test do
   gem 'shoulda-matchers'
   gem 'database_cleaner'
   gem 'timecop'
-  gem 'poltergeist'
   gem 'email_spec'
   gem 'resque_spec'
 end
