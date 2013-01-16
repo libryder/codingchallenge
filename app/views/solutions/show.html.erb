@@ -1,18 +1,13 @@
 <p id="notice"><%= notice %></p>
 
 <p>
-  <b>Solution url:</b>
-  <%= @solution.solution_url %>
-</p>
-
-<p>
   <b>Challenge:</b>
   <%= @solution.challenge_id %>
 </p>
 
 <p>
   <b>User:</b>
-  <%= @solution.user_id %>
+  <%= display_user(@solution.user) %>
 </p>
 
 <p>
@@ -21,7 +16,6 @@
 </p>
 
 <p>
-  <b>Source:</b>
   <pre class='prettyprint'>
     <%= @solution.source %>
   </pre>
