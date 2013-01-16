@@ -60,7 +60,7 @@
                     Hello, <%= raw display_user(current_user) %>. &nbsp;
                     <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
                   <% else %>
-                    <%= link_to "Sign up", new_user_registration_path %> or Login with &nbsp;<br />
+                    <%= link_to "Sign up", new_user_registration_path %> or login with &nbsp;<br />
                     <%= button_to "Github", "/users/auth/github", method: :get, class: 'github button-signin btn-inverse btn-mini' %>
                     &nbsp; &nbsp;
                     <%= button_to "Twitter", "/users/auth/twitter", method: :get, class: 'twitter button-signin btn-inverse btn-mini' %>

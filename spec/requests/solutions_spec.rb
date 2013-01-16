@@ -92,8 +92,13 @@ describe "Solutions" do
         expect(page).to have_content("Editing solution")
       end
 
-      it 'correctly updates solution' do
-        pending 'Write tests for new code editor.'
+      it 'correctly updates solution', :js do
+        # there isn't a reliable way to predict what the code highlighter will
+        # do to a string so I used a non-breaking string.
+        find('#editor textarea').set('More_code_yay')
+        click_button "Update Solution"
+        visit challenge_solution_path(challenge, solution)
+        expect(page).to have_content("More_code_yay")
       end
     end
 
