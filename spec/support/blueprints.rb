@@ -18,7 +18,7 @@ User.blueprint(:twitter) do
 end
 
 User.blueprint(:github) do
-  provider { 'twitter' }
+  provider { 'github' }
   uid { '1234567890' }
   username { 'github-chick' }
 end
