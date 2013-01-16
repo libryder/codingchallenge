@@ -37,6 +37,13 @@
         </div>
       <% end %>
 
+      <div class="field">
+        <%= ff.label :language %>
+        <%= ff.select(:language, options_for_select(LANGUAGES.each { |language| language })) %>
+      </div>
+
+      <br />
+
       <div class="span10" style="position:relative;height:400px">
         <div id="editor"></div>
       </div>

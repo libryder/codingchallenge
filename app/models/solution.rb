@@ -1,6 +1,6 @@
 class Solution < ActiveRecord::Base
   acts_as_votable
-  attr_accessible :challenge_id, :notes, :user_id, :valid_solution, :source, :title
+  attr_accessible :challenge_id, :notes, :user_id, :valid_solution, :source, :title, :language
   default_scope order('created_at')
   belongs_to :user
   belongs_to :challenge
