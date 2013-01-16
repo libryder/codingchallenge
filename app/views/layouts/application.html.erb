@@ -43,21 +43,31 @@
       <div class="row">
         <div class="span12 navbar navbar-top">
           <div class="navbar-inner">
-            <%= image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby") %>
-            <%= image_tag('python_logo.png', class: 'header-logo', title: "Python") %>
-            <%= image_tag('net_logo.png', class: 'header-logo', title: ".net") %>
-            <%= image_tag('java_logo.png', class: 'header-logo', title: "JAVA") %>
-            <%= image_tag('cpp_logo.png', class: 'header-logo', title: "C++") %>
-            <%= image_tag('php_logo.png', class: 'header-logo', title: "PHP") %>
             <a class="brand" href="/">CodingChallenge</a>
-            <div class="container-fluid nav-collapse">
-              <div id="user_nav">
-                <% if user_signed_in? %>
-                  Signed in as <%= raw display_user(current_user) %>. Not you?
-                  <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
-                <% else %>
-                  <%= link_to "Sign up", new_user_registration_path %> or <%= link_to "sign in", new_user_session_path %>
-                <% end %>
+
+            <div style="display: inline-block">
+              <%= image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby") %>
+              <%= image_tag('python_logo.png', class: 'header-logo', title: "Python") %>
+              <%= image_tag('net_logo.png', class: 'header-logo', title: ".net") %>
+              <%= image_tag('java_logo.png', class: 'header-logo', title: "JAVA") %>
+              <%= image_tag('cpp_logo.png', class: 'header-logo', title: "C++") %>
+              <%= image_tag('php_logo.png', class: 'header-logo', title: "PHP") %>
+              
+              
+              <div class="" id="header-login-block">
+                <div id="user_nav">
+                  <% if user_signed_in? %>
+                    Hello, <%= raw display_user(current_user) %>. &nbsp;
+                    <%= link_to "Sign out", destroy_user_session_path, :method => :delete %>
+                  <% else %>
+                    <%= link_to "Sign up", new_user_registration_path %> or Login with &nbsp;<br />
+                    <%= button_to "Github", "/users/auth/github", method: :get, class: 'github button-signin btn-inverse btn-mini' %>
+                    &nbsp; &nbsp;
+                    <%= button_to "Twitter", "/users/auth/twitter", method: :get, class: 'twitter button-signin btn-inverse btn-mini' %>
+                  <% end %>
+                <div class="clear"></div>
+                </div>
+
               </div>
             </div>
           </div>

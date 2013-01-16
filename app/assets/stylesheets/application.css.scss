@@ -7,6 +7,35 @@
 */
 
 body {
+
+  #user_nav {
+
+    .button_to { 
+      float: left;
+      margin: 3px 0 0 0;
+    }
+    width: 180px;
+    float: right;
+    margin-top: -17px;
+    
+    .button-signin {
+      background-repeat: no-repeat;
+      background-position: left;
+      width: 65px !important;
+      text-align: right;
+      margin-right: 15px;
+    }
+    .twitter {
+      background-image: url(twitter-login.png);
+    }
+    .github {
+      background-image: url(github-login.png);
+    }
+  }
+  #header-login-block {
+    padding: 0;
+    width: 725px;
+  }
   .twitter-follow-button { margin-bottom: -3px; }
   .prettyprint {
     /* For some reason pretty print leaves an empty <pre> tag; 
@@ -18,6 +47,12 @@ body {
       padding: 5px;
     }
     .navbar-top { margin-top: 15px; }
+    .navbar-inner.nav-collapse {
+      display: inline-block;
+    }
+    #main_nav {
+      float: right;
+    }
     .challenge-item {
       background: #eee;
       padding: 15px;
