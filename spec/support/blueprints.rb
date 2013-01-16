@@ -11,6 +11,18 @@ User.blueprint(:admin) do
   roles { ['admin'] }
 end  
 
+User.blueprint(:twitter) do
+  provider { 'twitter' }
+  uid { '1234567890' }
+  username { 'twitter-dude' }
+end
+
+User.blueprint(:github) do
+  provider { 'twitter' }
+  uid { '1234567890' }
+  username { 'github-chick' }
+end
+
 Solution.blueprint do
   challenge { challenge }
   source { "Sample solution notes" }

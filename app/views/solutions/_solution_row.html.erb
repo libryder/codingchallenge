@@ -1,4 +1,3 @@
-<hr />
 <div class="solutions-table">
 <% present solution do |presenter| %>
   <div class="span12">
@@ -11,7 +10,7 @@
     </div>
 
     <div class="title cell"><%= link_to(solution.title, challenge_solution_path(solution.challenge, solution)) %></div>
-    <div class="cell"><%= display_user(solution.user) %></div>
+    <div class="username cell"><%= display_user(solution.user) %></div>
     <!-- <td><%= solution.valid_solution ? "Yes" : "No" %></td> -->
     
     <% if can?(:manage, Solution) %>

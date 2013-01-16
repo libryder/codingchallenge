@@ -79,6 +79,10 @@ body {
       border-right: 1px solid #eee;
       max-width: 410px;
     }
+
+    div.title { width: 400px; }
+    div.username { width: 200px; }
+    
     .vote-cell {
       display: inline-block;
 

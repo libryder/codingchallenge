@@ -2,6 +2,7 @@
 <h1>Listing solutions</h1>
 
 <% if @solutions.any? %>
+  <hr />
   <% @solutions.each do |solution| %>
     <%= render partial: 'solutions/solution_row', locals: { solution: solution } %>
   <% end %>
