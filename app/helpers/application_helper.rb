@@ -11,8 +11,8 @@ module ApplicationHelper
     return user.email if user.provider.nil?
 
     case user.provider.downcase
-      when "twitter" then "<a href = http://www.twitter.com/#{user.username}/>#{user.username}</a>"
-      when "github"  then "<a href = http://www.github.com/#{user.username}/>#{user.username}</a>"      
+      when "twitter" then link_to("@#{user.username}", "http://www.twitter.com/#{user.username}/>#{user.username}")
+      when "github"  then link_to(user.username, "http://www.github.com/#{user.username}/>#{user.username}")      
       else user.username 
     end
   end
