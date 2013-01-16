@@ -35,12 +35,12 @@ describe "Solutions" do
         end
 
         it 'should display the correct count' do
-          element = page.find('.vote-cell div')
+          element = page.find('.vote-count .count')
           expect(element.text).to eq("0")
         end
 
         it 'should increment the count' do
-          element = page.find('.vote-cell div')
+          element = page.find('.vote-count .count')
           arrow = "up_vote_#{solution.id}"
           click_link arrow
           visit current_path
