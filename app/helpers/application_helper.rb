@@ -18,9 +18,12 @@ module ApplicationHelper
 
   def display_language(solution)
     tag = case solution.language
-      when "ruby" then image_tag('ruby_logo.png', class: 'header-logo', title: "Ruby")
-      when "php"  then image_tag('php_logo.png',  class: 'header-logo', title: "php")
-      else             ""
+      when "ruby"   then image_tag('ruby_logo.png',    class: 'header-logo', title: "ruby")
+      when "php"    then image_tag('php_logo.png',     class: 'header-logo', title: "php")
+      when "python" then image_tag('python_logo.png',  class: 'header-logo', title: "python")
+      when "c"      then image_tag('cpp_logo.png',     class: 'header-logo', title: "c")
+      when ".net"   then image_tag('net_logo.png',     class: 'header-logo', title: ".net")
+      else               ""
     end 
 
     "#{tag} #{solution.language}"
