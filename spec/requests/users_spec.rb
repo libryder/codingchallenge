@@ -2,6 +2,8 @@ require 'spec_helper'
 
 describe "Users" do
   let(:user) { User.make! }
+  let(:twitter_user) { User.make!(:twitter) }
+  let(:github_user) { User.make!(:github) }
   before { Challenge.make! }
 
   describe 'signing in with oauth' do
