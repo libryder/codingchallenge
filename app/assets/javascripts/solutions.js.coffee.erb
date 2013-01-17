@@ -58,3 +58,8 @@ $ ->
     new SolutionVote(element)
   $('#submit-solution').click (event) =>
     $('#solution_source').val(editor.getSession().getValue())
+  editor.getSession().setMode("ace/mode/ruby")
+  $("select").change ->
+    $("select option:selected").each ->
+      editor.getSession().setMode("ace/mode/" + $(this).text()); 
+      alert("Set editor to ace/mode/" + $(this).text());
