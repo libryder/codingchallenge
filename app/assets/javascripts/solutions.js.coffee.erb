@@ -26,7 +26,7 @@ class SolutionVote
     )
 
   updateVoteInfo: (classes, clicked_arrow) ->
-    url = location.host + '/solutions/' + @getSolutionId() + '/current_vote'
+    url = 'http://' + location.host + '/solutions/' + @getSolutionId() + '/current_vote'
 
     $.ajax(
       url: url

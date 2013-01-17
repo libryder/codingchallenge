@@ -4,11 +4,13 @@ Codingchallenge::Application.routes.draw do
   resource :home, only: :index
 
   resources :challenges do
-    resources :solutions do
-      get :up_vote
-      get :down_vote
-      get :current_vote
-    end
+    resources :solutions
+  end
+
+  resources :solutions do
+    get :up_vote
+    get :down_vote
+    get :current_vote
   end
 
   root :to => 'home#index'
