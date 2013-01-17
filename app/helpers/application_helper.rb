@@ -1,4 +1,3 @@
-
 module ApplicationHelper
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
