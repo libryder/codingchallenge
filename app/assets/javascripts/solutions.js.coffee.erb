@@ -15,7 +15,7 @@ class SolutionVote
 
   castUserVote: (event) ->
     classes = $(event.target).attr('class')
-    url = document.URL + '/solutions/' + @getSolutionId() + @voteResource(classes)
+    url = location.host + '/solutions/' + @getSolutionId() + @voteResource(classes)
 
     $.ajax(
       url: url
@@ -26,7 +26,7 @@ class SolutionVote
     )
 
   updateVoteInfo: (classes, clicked_arrow) ->
-    url = document.URL + '/solutions/' + @getSolutionId() + '/current_vote'
+    url = location.host + '/solutions/' + @getSolutionId() + '/current_vote'
 
     $.ajax(
       url: url
