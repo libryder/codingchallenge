@@ -8,7 +8,7 @@
 
 <div class="span8">
   <%= nested_form_for(@challenge, html: { class: 'form-inline' } ) do |f| %>
-    <%= fields_for @solution do |ff| %>
+    <%= fields_for(@solution, html: {class: 'form-inline'} ) do |ff| %>
       <% if @solution.errors.any? %>
         <div id="error_explanation">
           <h2><%= pluralize(@solution.errors.count, "error") %> prohibited this solution from being saved:</h2>
@@ -39,7 +39,7 @@
 
       <div class="field">
         <%= ff.label :language %>
-        <%= ff.select(:language, options_for_select(LANGUAGES.each { |language| language })) %>
+        <%= ff.select(:language, options_for_select(LANGUAGES.map { |lang, icon| [lang, lang] })) %>
       </div>
 
       <br />

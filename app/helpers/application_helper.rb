@@ -1,3 +1,4 @@
+
 module ApplicationHelper
   def present(object, klass = nil)
     klass ||= "#{object.class}Presenter".constantize
@@ -17,14 +18,10 @@ module ApplicationHelper
   end
 
   def display_language(solution)
-    tag = case solution.language
-      when "ruby"   then image_tag('ruby_logo.png',    class: 'header-logo', title: "ruby")
-      when "php"    then image_tag('php_logo.png',     class: 'header-logo', title: "php")
-      when "python" then image_tag('python_logo.png',  class: 'header-logo', title: "python")
-      when "c"      then image_tag('cpp_logo.png',     class: 'header-logo', title: "c")
-      when ".net"   then image_tag('net_logo.png',     class: 'header-logo', title: ".net")
-      else               ""
-    end 
+    icon = LANGUAGES[solution.language.to_s]
+    return solution.language if icon.blank?
+
+    tag = image_tag("#{icon}.png", class: 'header-logo', title: solution.language)
 
     "#{tag} #{solution.language}"
   end
