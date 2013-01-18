@@ -60,7 +60,7 @@ class SolutionsController < ApplicationController
           if redirect_path = session.delete(:redirect)
             redirect_to redirect_path
           else
-            redirect_to @solution, notice: 'Solution was successfully updated.' 
+            redirect_to challenge_path(@solution.challenge), notice: 'Solution was successfully updated.' 
           end
         end
         format.json { head :no_content }
