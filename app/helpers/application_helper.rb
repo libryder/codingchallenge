@@ -15,4 +15,13 @@ module ApplicationHelper
       link_to(user.username, "http://www.github.com/#{user.username}")
     end
   end
+
+  def display_language(solution)
+    icon = Solution::LANGUAGES[solution.language.to_sym]
+    return solution.language if icon.blank?
+
+    tag = image_tag("#{icon}_logo.png", class: 'header-logo', title: solution.language)
+
+    "#{tag} #{solution.language}"
+  end
 end

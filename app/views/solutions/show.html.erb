@@ -32,6 +32,7 @@
     <div class="span12">
       <%= render partial: 'solutions/solution_vote_cell', locals: { presenter: presenter, solution: @solution } %>
 
+      <div class="language cell"><%= raw display_language(@solution) %></div>
       <div class="title cell"><%= link_to(@solution.title, challenge_solution_path(@solution.challenge, @solution)) %></div>
       <div class="username cell">
         <div class="user"><%= display_user(@solution.user) %>

@@ -29,6 +29,14 @@ Solution.blueprint do
   title { "Some random title" }
 end
 
+Solution.blueprint(:ruby) do 
+  language { "ruby" }
+end
+
+Solution.blueprint(:other) do 
+  language { "other" }
+end
+
 Challenge.blueprint do
   description { "Sample challenge" }
   title { "My Title" }

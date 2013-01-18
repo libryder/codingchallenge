@@ -3,6 +3,7 @@ require 'spec_helper'
 describe Solution do
   it { should belong_to(:challenge) }
   it { should validate_presence_of(:source) }
+  it { should validate_presence_of(:title) }
   it { should belong_to(:user) }
   
   describe '#create' do

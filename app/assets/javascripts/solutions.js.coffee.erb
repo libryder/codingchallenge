@@ -53,8 +53,25 @@ class SolutionVote
   getSolutionId: ->
     $(@container).attr('rel')
 
+class LanguageControl
+
+  constructor: (container) ->
+    @container = container
+    @initializeControl()
+
+  initializeControl: ->
+    $(@container).change (event) =>
+      @updateLanguage(event)
+
+  updateLanguage: (event) ->
+    lang = $(event.target).val()
+    editor.getSession().setMode("ace/mode/" + lang)
+
 $ ->
   $('.vote-cell').each (index, element) =>
     new SolutionVote(element)
   $('#submit-solution').click (event) =>
     $('#solution_source').val(editor.getSession().getValue())
+
+  # Attach event to location selector
+  new LanguageControl('#solution_language')
