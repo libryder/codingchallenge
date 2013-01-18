@@ -83,20 +83,20 @@ class SolutionsController < ApplicationController
 
   def up_vote
     solution = Solution.find params[:solution_id]
-    current_user.up_votes solution
-    render json: { solution: solution, votes: solution.votes.count }
+    current_user.cast_up_vote solution
+    solution.calculate_popularity!
+    render json: { solution: solution, votes: solution.popularity }
   end
 
   def down_vote
     solution = Solution.find params[:solution_id]
-    current_user.down_votes solution
-    render json: { solution: solution, votes: solution.votes.count }
+    current_user.cast_down_vote solution
+    render json: { solution: solution, votes: solution.popularity }
   end
 
   def current_vote
     solution = Solution.find params[:solution_id]
-
-    render json: { up_voted: current_user.voted_up_on?(solution), votes: solution.positives.size }
+    render json: { up_voted: current_user.voted_up_on?(solution), votes: solution.popularity }
   end
 
 protected

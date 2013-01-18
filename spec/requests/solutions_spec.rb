@@ -36,7 +36,7 @@ describe "Solutions" do
 
         it 'should display the correct count' do
           element = page.find('.vote-count .count')
-          expect(element.text).to eq("0")
+          expect(element.text).to eq("1")
         end
 
         it 'should increment the count' do
@@ -44,7 +44,7 @@ describe "Solutions" do
           arrow = "up_vote_#{solution.id}"
           click_link arrow
           visit current_path
-          expect(element.text).to eq("1")
+          expect(element.text).to eq("2")
         end
       end
     end
