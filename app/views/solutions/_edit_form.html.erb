@@ -34,7 +34,14 @@
 
   <%= f.hidden_field :source, class: 'challenge-description'  %>
 
+  <div class="clear"></div>
+
   <br />
+
+  <div class="field">
+    <%= f.label :language %>
+    <%= f.select(:language, Solution::LANGUAGES) %>
+  </div>
 
   <div class="actions">
     <%= f.submit 'Update Solution', class: 'btn btn-success', id: 'submit-solution' %>

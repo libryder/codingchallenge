@@ -39,7 +39,7 @@
 
       <div class="field">
         <%= ff.label :language %>
-        <%= ff.select(:language, options_for_select(LANGUAGES.map { |lang, icon| [lang, lang] })) %>
+        <%= ff.select(:language, Solution::LANGUAGES, id: "language-selector") %>
       </div>
 
       <br />
