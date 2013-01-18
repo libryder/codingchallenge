@@ -1,5 +1,6 @@
 class Solution < ActiveRecord::Base
   LANGUAGES = {
+    ruby:       :ruby,
     c:          :c_cpp,
     clojure:    :clojure,
     csharp:     :csharp,
@@ -8,7 +9,6 @@ class Solution < ActiveRecord::Base
     perl:       :perl,
     php:        :php,
     python:     :python,
-    ruby:       :ruby,
     text:       :text
   }
 
