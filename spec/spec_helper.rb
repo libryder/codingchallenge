@@ -49,7 +49,7 @@ Spork.prefork do
     config.filter_run_excluding type: "request"
 
     DatabaseCleaner.strategy = :truncation
-    config.after(:all) { DatabaseCleaner.clean }
+    config.after(:each) { DatabaseCleaner.clean }
   end
 
   # Requires supporting ruby files with custom matchers and macros, etc,
