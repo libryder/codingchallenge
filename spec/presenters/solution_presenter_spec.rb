@@ -8,8 +8,8 @@ describe SolutionPresenter do
   before do 
     presenter.stub(
       link_to: '', 
-      challenge_solution_up_vote_path: nil, 
-      challenge_solution_down_vote_path: nil, 
+      solution_up_vote_path: nil,
+      solution_down_vote_path: nil,
       current_user: user
     )
   end
