@@ -1,6 +1,8 @@
 class ApplicationController < ActionController::Base
   protect_from_forgery
 
+  before_filter :load_challenges
+
   def load_challenges
     @five_challenges ||= Challenge.limit(5).all
   end

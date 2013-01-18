@@ -83,14 +83,7 @@
       <hr />
       <div class="row">
         <div class="span4">
-          <h4>Recent Challenges</h4>
-          <% @five_challenges.each do |challenge| %>
-            <div class="challenge-item">
-              <%= link_to(challenge.title, challenge_path(challenge)) %>
-            </div>
-          <% end %>
-          <br />
-          <%= link_to("View all challenges", challenges_path) %>
+          <%= render partial: 'shared/recent_challenges' %>
         </div>
 
         <div class="span4">
