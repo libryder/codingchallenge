@@ -17,10 +17,10 @@ module ApplicationHelper
   end
 
   def display_language(solution)
-    icon = Solution::LANGUAGES[solution.language.to_s]
+    icon = Solution::LANGUAGES[solution.language.to_sym]
     return solution.language if icon.blank?
 
-    tag = image_tag("#{icon}-icon.png", class: 'header-logo', title: solution.language)
+    tag = image_tag("#{icon}_logo.png", class: 'header-logo', title: solution.language)
 
     "#{tag} #{solution.language}"
   end
