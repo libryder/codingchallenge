@@ -27,6 +27,7 @@ Solution.blueprint do
   challenge { challenge }
   source { "Sample solution notes" }
   title { "Some random title" }
+  language { 'ruby' }
 end
 
 Solution.blueprint(:ruby) do 

@@ -54,4 +54,14 @@ class User < ActiveRecord::Base
       super
     end
   end
+
+  def cast_up_vote(solution)
+    up_votes(solution)
+    solution.calculate_popularity!
+  end
+
+  def cast_down_vote(solution)
+    down_votes(solution)
+    solution.calculate_popularity!
+  end
 end
