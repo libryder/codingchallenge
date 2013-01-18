@@ -37,15 +37,16 @@
         </div>
       <% end %>
 
+      <div class="span11" style="position:relative;height:400px">
+        <div id="editor"></div>
+      </div>
+
+      <div class="clear"></div>
+      <br />
+
       <div class="field">
         <%= ff.label :language %>
         <%= ff.select(:language, Solution::LANGUAGES, id: "language-selector") %>
-      </div>
-
-      <br />
-
-      <div class="span10" style="position:relative;height:400px">
-        <div id="editor"></div>
       </div>
 
       <%= ff.hidden_field :source, class: 'hidden'  %>
