@@ -14,6 +14,7 @@ gem 'omniauth-github'
 gem 'cancan'
 gem 'nested_form'
 gem 'acts_as_votable'
+gem 'activeadmin'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'
