@@ -62,4 +62,10 @@ class User < ActiveRecord::Base
     down_votes(solution)
     solution.calculate_popularity!
   end
+
+  def up_vote_count
+    solutions.inject(0) do |sum, s|
+      sum += s.up_votes.count
+    end
+  end
 end
