@@ -337,6 +337,7 @@ DEPENDENCIES
   devise
   email_spec
   flog
+  hashie
   inherited_resources
   jquery-rails
   json
