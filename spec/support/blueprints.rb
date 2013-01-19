@@ -9,6 +9,7 @@ User.blueprint(:admin) do
   email { "email#{sn}@test.com" }  # Each user gets a unique serial number.
   password { 'password' }
   roles { ['admin'] }
+  is_admin { true }
 end  
 
 User.blueprint(:twitter) do
