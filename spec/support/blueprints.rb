@@ -30,6 +30,7 @@ Solution.blueprint do
   source { "Sample solution notes" }
   title { "Some random title" }
   language { 'ruby' }
+  user { user }
 end
 
 Solution.blueprint(:ruby) do 

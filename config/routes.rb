@@ -6,7 +6,7 @@ Codingchallenge::Application.routes.draw do
   devise_for :users, controllers: {omniauth_callbacks: "omniauth_callbacks"}
 
   resource :home, only: :index
-  resources :users
+  resources :users, except: [:destroy]
   resources :challenges do
     resources :solutions
   end
