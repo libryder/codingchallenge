@@ -3,6 +3,7 @@ require 'machinist/active_record'
 User.blueprint do
   email { "email#{sn}@test.com" }  # Each user gets a unique serial number.
   password { 'password' }
+  username { 'itisme' }
 end
 
 User.blueprint(:admin) do
@@ -29,6 +30,7 @@ Solution.blueprint do
   source { "Sample solution notes" }
   title { "Some random title" }
   language { 'ruby' }
+  user { user }
 end
 
 Solution.blueprint(:ruby) do 

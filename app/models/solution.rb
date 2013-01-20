@@ -15,6 +15,7 @@ class Solution < ActiveRecord::Base
   acts_as_votable
   attr_accessible :challenge_id, :user_id, :valid_solution, :source, :title, :language, :popularity
   scope :by_popularity, lambda { order('popularity desc') }
+  scope :valid, where(valid_solution: true)
   belongs_to :user
   belongs_to :challenge
   validates :source, :title, presence: true
