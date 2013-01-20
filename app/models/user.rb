@@ -1,16 +1,13 @@
 class User < ActiveRecord::Base
   acts_as_voter
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :confirmable,
-  # :lockable, :timeoutable and
+
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  # Setup accessible (or protected) attributes for your model
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-  # attr_accessible :title, :body
-
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   serialize :roles, Array
+  validates :username, presence: true
+  has_many :solutions
 
   def admin?
     is?(:admin)
@@ -63,5 +60,15 @@ class User < ActiveRecord::Base
   def cast_down_vote(solution)
     down_votes(solution)
     solution.calculate_popularity!
+  end
+
+  def up_vote_count
+    solutions.inject(0) do |sum, s|
+      sum += s.up_votes.count
+    end
+  end
+
+  def profile
+    UserLevel.new(self)
   end
 end

@@ -1,0 +1,31 @@
+<div class="span12 center">
+  <div class="span5 well user-card">
+    <div class="intro">
+      Card for <strong><%= @user.username %></strong>
+    </div>
+
+    <div class="level-info">
+      <div class="badge badge-warning">lv<%= @user.profile.level %></div>
+      <div class="badge badge-info"><%= @user.profile.points %>xp</div>
+    </div>
+
+    <div class="main-badges">
+      <div class="badge badge-success"><%= @user.solutions.count %></div> solutions <br />
+      <div class="badge badge-success"><%= @user.solutions.valid.count %></div> valid <br />
+    </div>
+    <div class="main-badges">
+      <div class="badge badge-success">0</div> comments <br />
+      <div class="badge badge-success"><%= @user.find_voted_items.count %></div> points<br />
+    </div>
+
+    <div class="clear"></div>
+
+    <br />
+
+    <div class="progress progress-info">
+      <div class="bar" style="width: <%= @user.profile.level %>%"></div>
+    </div>
+
+    <%= @user.profile.progress %>% until next level
+  </div>
+</div>

@@ -10,28 +10,11 @@ describe ApplicationHelper do
   subject { TestHelper.new }
 
   describe "#display_user" do 
-    context "with no user" do 
-      let(:user) { nil }
+    let(:user) { User.make!(:twitter) }
 
-      it "returns Anonymous" do 
-        subject.display_user(user).should == "anonymous"
-      end
-    end
-
-    context "with a twitter user" do 
-      let(:user) { User.make!(:twitter) }
-
-      it "returns a linked up twitter name" do 
-        subject.display_user(user).should == "<a href=\"http://www.twitter.com/twitter-dude\">@twitter-dude</a>"
-      end
-    end
-
-    context "with a github user" do 
-      let(:user) { User.make!(:github) }
-
-      it "returns a linked up github name" do 
-        subject.display_user(user).should == "<a href=\"http://www.github.com/github-chick\">github-chick</a>"
-      end
+    it "returns a linked up user name" do
+      subject.should_receive(:user_path).with(user).and_return("/users/#{user.id}")
+      expect(subject.display_user(user)).to eq("<a href=\"/users/#{user.id}\">#{user.username}</a>")
     end
   end
 
