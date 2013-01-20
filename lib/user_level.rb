@@ -2,7 +2,7 @@ class UserLevel
   include Math
 
   attr_reader :user
-  attr_accessor :level, :points
+  attr_accessor :level, :points, :progress
 
   def initialize(user)
     @user = user
@@ -13,17 +13,20 @@ class UserLevel
 private
 
   def calculate_base_level
-    level = Math.log(experience_points + Math.sqrt(experience_points)).floor
-    if level > 0
-      self.level = level
+    float_level = Math.log(experience_points + Math.sqrt(experience_points))
+
+    if float_level >= 1
+      @level = float_level.floor
+      @progress = ((float_level - level) * 100).round
     else
-      self.level = 1
+      @level = 1
+      @progress = 0
     end
   end
 
   def experience_points
-    self.points += user.solutions.count * 5
-    self.points += user.solutions.valid.count * 15
-    self.points += user.up_vote_count * 6
+    @points += user.solutions.count * 5
+    @points += user.solutions.valid.count * 15
+    @points += user.up_vote_count * 6
   end
 end

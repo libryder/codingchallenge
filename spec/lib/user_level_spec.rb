@@ -6,15 +6,18 @@ describe UserLevel do
   let(:solution) { Solution.make!(user: user) }
   let(:voter) { User.make! }
 
-  subject(:user_level) { UserLevel.new(user).level }
+  subject(:user_level) { UserLevel.new(user) }
 
   context 'with no points' do
-    it { should == 1 }
+    its(:level) { should == 1 }
+    its(:progress) { should == 0 }
   end
 
   context 'with one solution' do
     before { solution }
-    it { should == 2 }
+
+    its(:level) { should == 2 }
+    its(:progress) { should == 23 }
   end
 
   context 'with one solution and 10 upvotes' do
@@ -25,7 +28,8 @@ describe UserLevel do
       end
     end
 
-    it { should == 4 }
+    its(:level) { should == 4 }
+    its(:progress) { should == 35 }
 
     context 'with several valid solutions' do
       before do
@@ -34,7 +38,8 @@ describe UserLevel do
         end
       end
 
-      it { should == 5 }
+      its(:level) { should == 5 }
+      its(:progress) { should == 67 }
     end
   end
 end

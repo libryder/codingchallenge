@@ -1,6 +1,9 @@
 require 'spec_helper'
 
 describe User do
+
+  it { should validate_presence_of(:username) }
+
   let(:user) { User.make! }
   let(:voter) { User.make! }
   let(:solution) { Solution.make!(user: user) }
@@ -21,6 +24,12 @@ describe User do
     it 'should return the proper number of upvotes' do
       voter.cast_up_vote(solution)
       expect(user.up_vote_count).to eq(1)
+    end
+  end
+
+  describe '#profile' do
+    it 'should return a UserLevel object' do
+      expect(user.profile).to be_a_kind_of(UserLevel)
     end
   end
 end

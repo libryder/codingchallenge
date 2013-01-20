@@ -4,10 +4,9 @@ class User < ActiveRecord::Base
   devise :database_authenticatable, :registerable, :omniauthable,
          :recoverable, :rememberable, :trackable, :validatable
 
-  attr_accessible :email, :password, :password_confirmation, :remember_me
-
+  attr_accessible :email, :password, :password_confirmation, :remember_me, :username
   serialize :roles, Array
-
+  validates :username, presence: true
   has_many :solutions
 
   def admin?
@@ -67,5 +66,9 @@ class User < ActiveRecord::Base
     solutions.inject(0) do |sum, s|
       sum += s.up_votes.count
     end
+  end
+
+  def profile
+    UserLevel.new(self)
   end
 end

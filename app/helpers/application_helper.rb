@@ -7,13 +7,7 @@ module ApplicationHelper
   end
 
   def display_user(user)
-    if user.nil? then "anonymous"
-    elsif user.uid.nil? then user.email
-    elsif user.provider.downcase == "twitter"
-      link_to("@#{user.username}", "http://www.twitter.com/#{user.username}")
-    elsif user.provider.downcase == "github"
-      link_to(user.username, "http://www.github.com/#{user.username}")
-    end
+    link_to(user.username, user_path(user))
   end
 
   def display_language(solution)
