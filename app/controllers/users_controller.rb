@@ -6,8 +6,10 @@ class UsersController < ApplicationController
 private
 
   def authenticate_user_for_edit!
-    unless can?(:manage, current_user)
-      authenticate_admin_user!
+    user = User.find params[:id]
+
+    unless can?(:manage, user)
+      redirect_to '/users/sign_in', error: "Insufficient access."
     end
   end
 end

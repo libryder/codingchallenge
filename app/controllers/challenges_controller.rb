@@ -1,6 +1,6 @@
 class ChallengesController < ApplicationController
 
-  before_filter :authenticate_admin_user!, only: [:update, :new, :destroy, :edit]
+  before_filter :authenticate_admin_user!, only: [:new, :destroy, :edit]
 
   def index
     @challenges = Challenge.all
