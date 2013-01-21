@@ -1,26 +1,24 @@
 require 'spec_helper'
 
 describe "Challenges" do
-  let(:user) { User.make! }
+
+  let!(:user) { create_logged_in_user }
   let!(:challenge) { Challenge.make! }
 
   describe 'challenges index' do
     before do
-      visit_path_and_login_with(challenges_path, user)
+      visit challenge_path(challenge)
     end
 
     it 'should have button to submit solution' do
       expect(page).to have_link("Submit Solution")
     end
 
-    it 'should navigate to new solution page' do
-      click_link("Submit Solution")
-      expect(current_path).to eq(new_challenge_solution_path(challenge))
-    end
-
     describe "admin functions" do      
       context 'as an admin' do
-        let(:user) { User.make!(:admin) }
+        let!(:user) { create_logged_in_admin }
+        
+        before { visit challenges_path }
         
         it 'should show an edit link' do
           expect(page).to have_link 'Edit'
@@ -33,15 +31,47 @@ describe "Challenges" do
         end
       end
     end
-
   end
+
+  describe 'resource security' do
+    let(:challenge) { Challenge.make! }
+
+    context 'as an admin' do
+      let!(:user) { create_logged_in_admin }
+
+      it 'should be able to access edit page' do
+        visit edit_challenge_path(challenge)
+        expect(current_path).to eq(edit_challenge_path(challenge))
+      end
+
+      it 'should be able to access the new page' do
+        visit new_challenge_path
+        expect(current_path).to eq(new_challenge_path)
+      end
+    end
+
+    context 'as a regular user' do
+      let!(:user) { create_logged_in_user }
+
+      it 'should not allow access to edit page' do
+        visit edit_challenge_path(challenge)
+        expect(current_path).to eq(root_path)
+      end
+
+      it 'should not be able to access the new page' do
+        visit new_challenge_path
+        expect(current_path).to eq(root_path)
+      end
+    end
+  end
+
 
   describe 'show challenge' do
     let(:solution) { Solution.make! }
 
     before do
       challenge.solutions << solution
-      visit_path_and_login_with(challenge_path(challenge), user)
+      visit challenge_path(challenge)
     end
 
     it 'should show challenge details' do
@@ -56,10 +86,10 @@ describe "Challenges" do
   end
 
   describe 'new challenge' do
-    let(:user) { User.make!(:admin) }
+    let!(:user) { create_logged_in_admin }
 
     before do
-      visit_path_and_login_with(new_challenge_path, user)
+      visit new_challenge_path
     end
 
     describe 'accessing challenges resource' do

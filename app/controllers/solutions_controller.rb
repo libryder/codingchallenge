@@ -1,5 +1,8 @@
 class SolutionsController < ApplicationController
 
+  before_filter :authenticate_admin_user!, only: [:update, :destroy, :edit]
+  before_filter :authenticate_user!, only: [:new, :create]
+
   def index
     session[:redirect] = request.referrer
     @solutions = Solution.all
@@ -42,7 +45,7 @@ class SolutionsController < ApplicationController
 
     respond_to do |format|
       if @solution.save
-        format.html { redirect_to challenge_solution_path(solution.challenge, solution), notice: 'Solution was successfully created.' }
+        format.html { redirect_to challenge_solution_path(@solution.challenge, @solution), notice: 'Solution was successfully created.' }
         format.json { render json: @solution, status: :created, location: @solution }
       else
         format.html { render action: "new" }
