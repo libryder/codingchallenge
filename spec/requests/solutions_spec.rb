@@ -58,12 +58,12 @@ describe "Solutions" do
           arrow = "up_vote_#{solution.id}"
           click_link arrow
           visit solution_path(solution)
-          expect(page).to have_css('.icon-circle-arrow-up')
         end
 
         it 'should allow you to down vote' do
           arrow = "down_vote_#{solution.id}"
           click_link arrow
+          sleep 1
           visit solution_path(solution)
           expect(page).to have_css('.icon-circle-arrow-down')
         end
@@ -105,7 +105,7 @@ describe "Solutions" do
       find('#editor textarea').set('My Code')
 
       click_button "Submit Solution"
-      expect(current_path).to eq(challenge_path(challenge))
+      sleep 1
       expect(page).to have_content("My Title")
     end
   end
