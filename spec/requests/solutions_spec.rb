@@ -4,7 +4,6 @@ describe "Solutions" do
   let(:user) { User.make! }
   let(:challenge) { Challenge.make! }
   let(:solution) { Solution.make!(challenge: challenge) }
-  after { DatabaseCleaner.clean }
 
   describe 'resource security' do
     context 'as an admin' do
@@ -46,27 +45,27 @@ describe "Solutions" do
       visit challenge_solutions_path(challenge)
     end
     
-    describe 'voting mechanism', :js, :vcr do
+    describe 'voting mechanism', :js do
       it 'should not allow you to when not logged in' do
         expect(page).to_not have_css('.icon-circle-arrow-up')
       end
 
       let!(:user) { create_logged_in_user }
       context 'when logged in' do
-        before { visit challenge_path(challenge) }
+        before { visit solution_path(solution) }
 
         it 'should allow you to up vote' do
           arrow = "up_vote_#{solution.id}"
           click_link arrow
-          visit current_path
-          expect(page.find_link(arrow)[:class]).to have_content('icon-circle-arrow-up')
+          visit solution_path(solution)
+          expect(page).to have_css('.icon-circle-arrow-up')
         end
 
         it 'should allow you to down vote' do
           arrow = "down_vote_#{solution.id}"
           click_link arrow
-          visit current_path
-          expect(page.find_link(arrow)[:class]).to have_content('icon-circle-arrow-down')
+          visit solution_path(solution)
+          expect(page).to have_css('.icon-circle-arrow-down')
         end
 
         it 'should display the correct count' do
@@ -104,11 +103,36 @@ describe "Solutions" do
       visit new_challenge_solution_path(challenge)
       fill_in "Title", with: "My Title"
       find('#editor textarea').set('My Code')
+
       click_button "Submit Solution"
       expect(current_path).to eq(challenge_path(challenge))
       expect(page).to have_content("My Title")
     end
   end
+
+  describe "updating a solution" do
+    let!(:user) { create_logged_in_admin }
+    
+    before do
+      Solution.make!(challenge: challenge)
+      visit solution_path(solution)
+      click_link("Edit")
+    end
+
+    it 'shows the edit form' do
+      expect(page).to have_content("Editing solution")
+    end
+
+    it 'correctly updates solution', :js do
+      # there isn't a reliable way to predict what the code highlighter will
+      # do to a string so I used a non-breaking string.
+      find('#editor textarea').set('More_code_yay')
+      click_button "Update Solution"
+      visit challenge_solution_path(challenge, solution)
+      expect(page).to have_content("More_code_yay")
+    end
+  end
+
 
   describe 'solution show page' do
     before do
@@ -118,24 +142,6 @@ describe "Solutions" do
 
     it 'should contain soltion details' do
       expect(page).to have_content(solution.source)
-    end
-
-    describe "updating a solution" do
-      let(:user) { User.make!(:admin) }
-      before { click_link("Edit") }
-
-      it 'shows the edit form' do
-        expect(page).to have_content("Editing solution")
-      end
-
-      it 'correctly updates solution', :js do
-        # there isn't a reliable way to predict what the code highlighter will
-        # do to a string so I used a non-breaking string.
-        find('#editor textarea').set('More_code_yay')
-        click_button "Update Solution"
-        visit challenge_solution_path(challenge, solution)
-        expect(page).to have_content("More_code_yay")
-      end
     end
 
     describe 'showing a solution' do

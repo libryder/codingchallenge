@@ -46,12 +46,13 @@ Spork.prefork do
 
     # The integration tests can be run with:
     # rspec -t type:request
-    config.filter_run_excluding type: "request"
+    #config.filter_run_excluding type: "request"
 
     DatabaseCleaner.strategy = :truncation
     config.after(:each) { DatabaseCleaner.clean }
   end
-
+  require 'capybara/poltergeist'
+  Capybara.javascript_driver = :poltergeist
   # Requires supporting ruby files with custom matchers and macros, etc,
     # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}

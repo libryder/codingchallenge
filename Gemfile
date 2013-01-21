@@ -33,6 +33,7 @@ group :development do
 end
 
 group :test do
+  gem 'poltergeist'
   gem 'spork'
   gem 'capybara'
   gem 'capybara-mechanize'
