@@ -31,6 +31,15 @@ describe ApplicationHelper do
         expect(subject.display_user(user, challenge)).to eq("Clever User")
       end
     end
+
+    context "with no challenge" do 
+      let(:user) { User.make!(:twitter) }
+
+      it "returns a linked up user name" do
+        subject.should_receive(:user_path).with(user).and_return("/users/#{user.id}")
+        expect(subject.display_user(user)).to eq("<a href=\"/users/#{user.id}\">#{user.username}</a>")
+      end
+    end
   end
 
   describe "#display_language" do 

@@ -6,8 +6,8 @@ module ApplicationHelper
     presenter
   end
 
-  def display_user(user, challenge)
-    if challenge.expired?
+  def display_user(user, challenge=nil)
+    if challenge.nil? || challenge.expired?
       link_to(user.username, user_path(user))
     else
       "Clever User"
