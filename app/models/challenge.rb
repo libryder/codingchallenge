@@ -20,7 +20,8 @@ class Challenge < ActiveRecord::Base
   accepts_nested_attributes_for :solutions, allow_destroy: true
   
   def expired?
-    elapsed = Time.now.to_i - created_at.to_i
+    created = created_at || Time.now
+    elapsed = Time.now.to_i - created.to_i
     elapsed > 7.days.to_i
   end
 end
