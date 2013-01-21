@@ -17,6 +17,7 @@ Spork.prefork do
   require 'rspec/rails'
   require 'shoulda/matchers/integrations/rspec'
   require 'rspec/autorun'
+  require 'capybara/poltergeist'
 
   RSpec.configure do |config|
     # == Mock Framework
@@ -51,11 +52,12 @@ Spork.prefork do
     DatabaseCleaner.strategy = :truncation
     config.after(:each) { DatabaseCleaner.clean }
   end
-  require 'capybara/poltergeist'
+  
   Capybara.javascript_driver = :poltergeist
   Capybara.register_driver :poltergeist do |app|
     Capybara::Poltergeist::Driver.new(app, js_errors: false)
   end
+
   # Requires supporting ruby files with custom matchers and macros, etc,
     # in spec/support/ and its subdirectories.
   Dir[Rails.root.join("spec/support/**/*.rb")].each {|f| require f}
