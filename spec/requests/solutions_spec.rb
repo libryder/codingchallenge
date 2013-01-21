@@ -3,9 +3,43 @@ require 'spec_helper'
 describe "Solutions" do
   let(:user) { User.make! }
   let(:challenge) { Challenge.make! }
-  let(:solution) { Solution.make! }
+  let(:solution) { Solution.make!(challenge: challenge) }
   after { DatabaseCleaner.clean }
-  
+
+  describe 'resource security' do
+    context 'as an admin' do
+      let!(:user) { create_logged_in_admin }
+
+      it 'should be able to access edit page' do
+        visit edit_challenge_solution_path(challenge, solution)
+        expect(current_path).to eq(edit_challenge_solution_path(challenge, solution))
+      end
+    end
+
+    context 'as a regular user' do
+      let!(:user) { create_logged_in_user }
+
+      it 'should not allow access to edit page' do
+        visit edit_challenge_solution_path(challenge, solution)
+        expect(current_path).to eq(root_path)
+      end
+
+      it 'should be able to access the new page' do
+        visit new_challenge_solution_path(challenge)
+        expect(current_path).to eq(new_challenge_solution_path(challenge))
+      end
+    end
+
+    context 'logged out' do
+      let(:user) { nil }
+
+      it 'should not be able to access new page' do
+        visit new_solution_path
+        expect(current_path).to eq(new_user_session_path)
+      end
+    end
+  end
+
   describe 'solutions list page' do
     before do
       challenge.solutions << solution
@@ -17,8 +51,9 @@ describe "Solutions" do
         expect(page).to_not have_css('.icon-circle-arrow-up')
       end
 
+      let!(:user) { create_logged_in_user }
       context 'when logged in' do
-        before { visit_path_and_login_with(challenge_path(challenge), user) }
+        before { visit challenge_path(challenge) }
 
         it 'should allow you to up vote' do
           arrow = "up_vote_#{solution.id}"
@@ -63,9 +98,10 @@ describe "Solutions" do
   end
 
   describe 'creating a new solution', :js do
-    before { visit_path_and_login_with(new_challenge_solution_path(challenge), user) }
+    before { create_logged_in_user }
 
     it "should allow you to create a new solution" do
+      visit new_challenge_solution_path(challenge)
       fill_in "Title", with: "My Title"
       find('#editor textarea').set('My Code')
       click_button "Submit Solution"

@@ -13,7 +13,7 @@ class ApplicationController < ActionController::Base
   end
 
   def authenticate_admin_user!
-    render_403 and return if user_signed_in? && !current_user.admin?
+    redirect_to new_user_session_path if user_signed_in? && !current_user.admin?
     authenticate_user!
   end
   
