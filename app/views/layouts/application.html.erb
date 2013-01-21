@@ -35,8 +35,9 @@
     <!-- Size should be 32 x 32 pixels -->
     <%= favicon_link_tag 'favicon.ico', :rel => 'shortcut icon' %>
     <%= javascript_include_tag 'prettify' %>
-    <%= javascript_include_tag 'lang-vb' %>
     <%= stylesheet_link_tag "application", :media => "all" %>
+
+    <%= content_for?(:head) ? yield(:head) : nil %>
 
   </head>
   <body>
@@ -142,5 +143,6 @@
       })();
 
     </script>
+    <%= content_for?(:scripts) ? yield(:scripts) : nil %>
   </body>
 </html>

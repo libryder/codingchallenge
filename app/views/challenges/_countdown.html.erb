@@ -1,0 +1,26 @@
+<%= content_for(:scripts) do %>
+  <%= javascript_include_tag 'jquery.jcountdown' %>
+
+<script type="text/javascript">
+$(document).ready(function() {
+
+      
+  $("#time").countdown({
+    date: "january 30, 2013 12:35",
+    onComplete: function( event ) {
+
+    },
+    leadingZero: true
+  });
+
+});
+</script>
+<% end %>
+
+  <div id="container">
+
+    <p id="time" class="time"></p>
+    
+
+  
+  </div>
