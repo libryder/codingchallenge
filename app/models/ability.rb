@@ -30,5 +30,9 @@ class Ability
     if user.admin?
       can :manage, :all
     end
+
+    can :manage, User do |u|
+      u.id == user.id
+    end
   end
 end
