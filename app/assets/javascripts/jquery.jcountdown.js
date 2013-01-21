@@ -8,7 +8,7 @@ $.fn.countdown = function( method /*, options*/ ) {
 	var defaults = {
 			date: null,
 			updateTime: 1000,
-			htmlTemplate: "%d <span class='cd-time'>days</span> %h <span class='cd-time'>hours</span> %i <span class='cd-time'>mins</span> %s <span class='cd-time'>sec</span>",
+			htmlTemplate: "<span class='cbox'><span class='citem'>%d</span><span class='cd-time'>days</span></span><span class='cbox'><span class='citem'>%h</span><span class='cd-time'>hours</span></span><span class='cbox'><span class='citem'>%i</span><span class='cd-time'>mins</span></span><span class='cbox'><span class='citem'>%s</span><span class='cd-time'>sec</span></span>",
 			minus: false,
 			onChange: null,
 			onComplete: null,

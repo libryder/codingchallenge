@@ -98,24 +98,19 @@ hr.headerline{
 border: 1px solid #000000;
 }
 
-#container{
-margin: 60px auto;
-width:450px;
-border: 1px solid #000000;
-padding:10px;
-}
+#container{ clear: both; overflow: auto; margin: 0 auto; width: 628px; font-size: 62px; }
+
+span.cbox { display: block; float: left; width: auto; margin: 0 7px; }
+  span.cbox span.citem { display: block; padding-left: 16px; width: 127px; height: 60px; background-image: url(bg_cnt.jpg); background-repeat: no-repeat; overflow: hidden; color: #8f8f8f; line-height: 60px; letter-spacing: 38px; text-shadow: #fff 1px 1px 1px; text-align: left; }
+  span.cbox span.cd-time { display: block; width: 100%; text-align: center; font-size: 12px; margin: 4px 0 0 -8px; text-transform: uppercase; color: #666; }
 
 h1{
 text-align:center;
 }
 p.time{
-color:#c21017;
-text-align: center;
+clear: both; overflow: auto; margin: 0 0 24px 0; }
 }
 
 
 p.time .cd-time{
-display:inline;
-color:#222222;
-font-size:0.8em;
 }
