@@ -108,7 +108,7 @@
             <div class="navbar-inner">
               <div>&copy; 2013 <%= link_to('libryder', 'http://github.com/libryder') %> / <%= link_to('@libryder', 'http://twitter.com/libryder') %></div>
                 <div style="float:right;margin-top:-30px">
-                  <%= render partial: 'shared/facebook' unless ENV['CI'] %>
+                  <%= render partial: 'shared/facebook' unless Rails.env.test? %>
                 </div>
             </div>
           </div>
