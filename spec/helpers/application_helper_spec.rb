@@ -10,11 +10,26 @@ describe ApplicationHelper do
   subject { TestHelper.new }
 
   describe "#display_user" do 
-    let(:user) { User.make!(:twitter) }
 
-    it "returns a linked up user name" do
-      subject.should_receive(:user_path).with(user).and_return("/users/#{user.id}")
-      expect(subject.display_user(user)).to eq("<a href=\"/users/#{user.id}\">#{user.username}</a>")
+    let(:challenge) { mock "Challenge" }
+
+    context "with an old challenge" do 
+      let(:user) { User.make!(:twitter) }
+
+      it "returns a linked up user name" do
+        subject.should_receive(:user_path).with(user).and_return("/users/#{user.id}")
+        challenge.should_receive(:expired?).and_return true
+        expect(subject.display_user(user, challenge)).to eq("<a href=\"/users/#{user.id}\">#{user.username}</a>")
+      end
+    end
+
+    context "with a current challenge" do 
+      let(:user) { User.make!(:twitter) }
+
+      it "it just calls them a clever user" do 
+        challenge.should_receive(:expired?).and_return false
+        expect(subject.display_user(user, challenge)).to eq("Clever User")
+      end
     end
   end
 
