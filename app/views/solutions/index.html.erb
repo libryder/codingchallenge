@@ -10,6 +10,8 @@
   <div id="no-solutions">There doesn't seem to be anything here.</div>
 <% end %>
 
-<div>
-  <%= link_to("Submit Solution", new_challenge_solution_path(@challenge), class: 'btn btn-warning btn-large') %>
-</div>
+<% unless @challenge.expired? %>
+  <div>
+    <%= link_to("Submit Solution", new_challenge_solution_path(@challenge), class: 'btn btn-warning btn-large') %>
+  </div>
+<% end %>

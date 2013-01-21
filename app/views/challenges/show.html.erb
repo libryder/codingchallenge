@@ -26,6 +26,10 @@
   <% end %>
 </div>
 
-<%= render partial: 'countdown' %>
+<% if @challenge.expired? %>
+  <h3 class="expired">Expired!</h3>
+<% else %>
+  <%= render partial: 'countdown' %>
+<% end %>
 
 <%= render template: 'solutions/index', locals: { solutions: @challenge.solutions } %>
