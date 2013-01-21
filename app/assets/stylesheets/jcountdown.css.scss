@@ -1,0 +1,64 @@
+#container {
+  :focus {
+  	outline: 0;
+  }
+  p, a{
+    font-size: 0.8em;
+  }
+  p a{
+    font-size: 1.0em;
+  }
+  	
+  hr{
+    border: 1px solid #85CD4F;
+
+    .headerline{
+      border: 1px solid #000000;
+    }
+  }
+
+  clear: both; 
+  overflow: auto; 
+  margin: 0 auto; 
+  width: 628px; 
+  font-size: 62px;
+
+  .cbox { 
+    display: block; 
+    float: left; 
+    width: auto; 
+    margin: 0 7px; 
+
+    .citem { 
+      display: block; 
+      padding-left: 16px; 
+      width: 127px; 
+      height: 60px; 
+      background-image: url(bg_cnt.jpg); 
+      background-repeat: no-repeat; 
+      overflow: hidden; 
+      color: #8f8f8f; 
+      line-height: 60px; 
+      letter-spacing: 38px; 
+      text-shadow: #fff 1px 1px 1px; 
+      text-align: left; 
+    }
+
+    .cd-time { 
+      display: block; 
+      width: 100%; 
+      text-align: center; 
+      font-size: 12px; 
+      margin: 4px 0 0 -8px; 
+      text-transform: uppercase; 
+      color: #666; 
+    }
+  }
+
+  h1{
+    text-align:center;
+  }
+  .time{
+    clear: both; overflow: auto; margin: 0 0 24px 0;
+  }
+}
