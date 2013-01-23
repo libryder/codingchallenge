@@ -18,10 +18,6 @@ gem 'activeadmin'
 gem 'inherited_resources'
 gem 'hashie'
 
-configure :production do
-  require 'newrelic_rpm'
-end
-
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'
   gem 'coffee-rails', '~> 3.2.1'
