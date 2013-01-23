@@ -17,6 +17,7 @@ gem 'acts_as_votable'
 gem 'activeadmin'
 gem 'inherited_resources'
 gem 'hashie'
+gem 'newrelic_rpm'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'
