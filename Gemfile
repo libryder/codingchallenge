@@ -18,6 +18,7 @@ gem 'activeadmin'
 gem 'inherited_resources'
 gem 'hashie'
 gem 'newrelic_rpm'
+gem 'pygments.rb'
 
 group :assets do
   gem 'sass-rails',   '~> 3.2.5'

@@ -1,7 +1,6 @@
 <h3>Challenge</h3>
 
 <div class="well">
-  <p id="notice"><%= notice %></p>
 
   <h3><%= @solution.challenge.title %></h3>
 
@@ -46,12 +45,14 @@
 
 <h4>Source</h4>
 
-<pre class='prettyprint'>
-<%= @solution.source %>
-</pre>
+<style type="text/css">
+  <%= Pygments.css('.highlight', style: 'friendly') %>
+</style>
+
+<%= @solution.source.html_safe %>
 
 <% if can?(:manage, Solution) %>
-  <%= link_to 'Edit', edit_challenge_solution_path(@solution.challenge, @solution) %>
+  <%= link_to 'Edit', edit_solution_path(@solution) %>
 <% end %>
 
 <br />

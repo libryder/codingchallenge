@@ -19,8 +19,13 @@ class Solution < ActiveRecord::Base
   belongs_to :user
   belongs_to :challenge
   validates :source, :title, presence: true
+  before_save { |solution| solution.source = parse_source }
 
   def calculate_popularity!
     update_attributes(popularity: (up_votes.count - down_votes.count) + 1)
+  end
+
+  def parse_source
+    Pygments.highlight(source, lexer: language)
   end
 end
