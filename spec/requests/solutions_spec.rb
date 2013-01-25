@@ -51,6 +51,7 @@ describe "Solutions" do
       end
 
       let!(:user) { create_logged_in_user }
+
       context 'when logged in' do
         before { visit solution_path(solution) }
 
@@ -77,6 +78,9 @@ describe "Solutions" do
           element = page.find('.vote-count .count')
           arrow = "up_vote_#{solution.id}"
           click_link arrow
+          # this needs to change to a wait block. the click_link is 
+          # an ajax call and nothing is waiting for it.
+          sleep 1
           visit current_path
           expect(element.text).to eq("2")
         end
@@ -127,7 +131,7 @@ describe "Solutions" do
       # there isn't a reliable way to predict what the code highlighter will
       # do to a string so I used a non-breaking string.
       find('#editor textarea').set('More_code_yay')
-      click_button "Update Solution"
+      click_button "Submit Solution"
       visit challenge_solution_path(challenge, solution)
       expect(page).to have_content("More_code_yay")
     end
@@ -136,12 +140,9 @@ describe "Solutions" do
 
   describe 'solution show page' do
     before do
+      solution.stub(parse_source: solution.source)
       challenge.solutions << solution
       visit_path_and_login_with(challenge_solution_path(challenge, solution), user)
-    end
-
-    it 'should contain soltion details' do
-      expect(page).to have_content(solution.source)
     end
 
     describe 'showing a solution' do

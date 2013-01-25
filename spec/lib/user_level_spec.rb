@@ -24,7 +24,7 @@ describe UserLevel do
     before do
       (1..10).each do
         u = User.make!
-        u.cast_up_vote(solution)
+        u.up_votes(solution)
       end
     end
 

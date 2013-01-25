@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-describe ApplicationHelper do 
+describe ApplicationHelper do
 
   class TestHelper
     include ApplicationHelper
@@ -9,11 +9,11 @@ describe ApplicationHelper do
 
   subject { TestHelper.new }
 
-  describe "#display_user" do 
+  describe "#display_user" do
 
     let(:challenge) { mock "Challenge" }
 
-    context "with an old challenge" do 
+    context "with an old challenge" do
       let(:user) { User.make!(:twitter) }
 
       it "returns a linked up user name" do
@@ -23,16 +23,16 @@ describe ApplicationHelper do
       end
     end
 
-    context "with a current challenge" do 
+    context "with a current challenge" do
       let(:user) { User.make!(:twitter) }
 
-      it "it just calls them a clever user" do 
+      it "it just calls them a clever user" do
         challenge.should_receive(:expired?).and_return false
         expect(subject.display_user(user, challenge)).to eq("Clever User")
       end
     end
 
-    context "with no challenge" do 
+    context "with no challenge" do
       let(:user) { User.make!(:twitter) }
 
       it "returns a linked up user name" do
@@ -42,22 +42,24 @@ describe ApplicationHelper do
     end
   end
 
-  describe "#display_language" do 
-    context "with ruby" do 
+  describe "#display_language" do
+    context "with ruby" do
       let(:solution) { Solution.make!(:ruby) }
 
-      it "it returns the ruby icon" do 
+      it "it returns the ruby icon" do
         subject.should_receive(:image_tag).with("ruby_logo.png", {:class=>"header-logo", :title=>"ruby"})
         subject.display_language(solution)
       end
     end
   
-    context "with other" do 
-      let(:solution) { Solution.make!(:other) }
+    context "with html" do
+      let(:solution) { Solution.make!(:html) }
+      before { Solution.any_instance.stub(parse_source: solution.source )}
 
-      it "it returns the ruby icon" do 
+
+      it "it returns the ruby icon" do
         subject.should_not_receive(:image_tag)
-        subject.display_language(solution).should eq "other"
+        subject.display_language(solution).should eq "html"
       end
     end
   end

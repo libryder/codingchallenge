@@ -9,9 +9,3 @@
 <% else %>
   <div id="no-solutions">Nobody has figured this one out yet...  You could be the first!</div>
 <% end %>
-
-<% unless @challenge.expired? %>
-  <div>
-    <%= link_to("Submit Solution", new_challenge_solution_path(@challenge), class: 'btn btn-warning btn-large') %>
-  </div>
-<% end %>

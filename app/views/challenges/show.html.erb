@@ -3,13 +3,6 @@
 
   <h3><%= @challenge.title %></h3>
 
-  <% if @challenge.gist_url.present? %>
-    <p>
-      <b>Url:</b>
-      <%= link_to(@challenge.gist_url, @challenge.gist_url) %>
-    </p>
-  <% end %>
-
   <p>
     <strong>Description:</strong><br />
     <%= @challenge.description %>
@@ -33,3 +26,9 @@
 <% end %>
 
 <%= render template: 'solutions/index', locals: { solutions: @challenge.solutions } %>
+
+<% unless @challenge.expired? %>
+  <div>
+    <%= link_to("Submit Solution", new_challenge_solution_path(@challenge), class: 'btn btn-warning btn-large') %>
+  </div>
+<% end %>

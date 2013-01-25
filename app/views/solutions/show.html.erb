@@ -4,13 +4,6 @@
 
   <h3><%= @solution.challenge.title %></h3>
 
-  <% if @solution.challenge.gist_url.present? %>
-    <p>
-      <b>Url:</b>
-      <%= link_to(@solution.challenge.gist_url, @solution.challenge.gist_url) %>
-    </p>
-  <% end %>
-
   <p>
     <strong>Description:</strong><br />
     <%= @solution.challenge.description %>
@@ -49,7 +42,9 @@
   <%= Pygments.css('.highlight', style: 'friendly') %>
 </style>
 
-<%= @solution.source.html_safe %>
+<div class="span12">
+  <%= @solution.source.html_safe %>
+</div>
 
 <% if can?(:manage, Solution) %>
   <%= link_to 'Edit', edit_solution_path(@solution) %>

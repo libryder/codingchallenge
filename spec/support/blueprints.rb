@@ -37,8 +37,8 @@ Solution.blueprint(:ruby) do
   language { "ruby" }
 end
 
-Solution.blueprint(:other) do 
-  language { "other" }
+Solution.blueprint(:html) do 
+  language { "html" }
 end
 
 Challenge.blueprint do

@@ -26,6 +26,6 @@ class Solution < ActiveRecord::Base
   end
 
   def parse_source
-    Pygments.highlight(source, lexer: language)
+    Pygments.highlight(source, lexer: language, options: { linenos: :table })
   end
 end

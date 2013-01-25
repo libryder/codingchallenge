@@ -9,7 +9,7 @@ describe Solution do
   it { should validate_presence_of(:source) }
   it { should validate_presence_of(:title) }
   it { should belong_to(:user) }
-  
+
   describe '#create' do
     it "should save the record" do
       expect(solution.errors).to be_blank

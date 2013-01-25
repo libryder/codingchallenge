@@ -12,7 +12,7 @@
       </div>
     <% end %>
 
-    <%= f.hidden_field :challenge_id, value: @solution.challenge.id %>
+    <%= f.hidden_field :challenge_id, value: params[:challenge_id] || @solution.challenge.id %>
 
     <div class="field">
       <%= f.label :title %>
